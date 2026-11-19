@@ -1,4 +1,5 @@
 model_out/
+model_out_v1
 __pycache__/
 *.pyc
 data/train.jsonl

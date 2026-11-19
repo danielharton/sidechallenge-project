@@ -37,7 +37,7 @@ def money():
     return R.choice(["1.850", "2.500", "750", "3.000", "1.200", "499", "4.300", "900", "15.000", "2,99", "5,49", "12"])
 
 
-NAMES_M = ["Andrei", "Mihai", "Alex", "Radu", "Vlad", "Ionuț", "Cristi", "Bogdan"]
+NAMES_M = ["Andrei", "Mihai", "Alex", "Radu", "Vlad", "Ionuț", "Cristi", "Bogdan", ]
 NAMES_F = ["Ioana", "Maria", "Elena", "Ana", "Cristina", "Diana", "Raluca", "Andreea"]
 REL = ["mami", "mama", "tati", "bunico", "mamă"]
 
@@ -67,6 +67,7 @@ POOL = {
         "Aveți o amendă neplătită și riscați executare silită.", "Calculatorul dvs. este infectat cu viruși.",
         "Pe numele dvs. a fost deschis un dosar penal.", "Contul dumneavoastră a fost compromis.",
         "Dacă nu răspundeți, veți pierde accesul la cont.", "Telefonul dvs. a fost spart de hackeri.",
+        "Codul de acces pentru contul de ",
     ],
     "RF_URGENCY": [
         "Aveți la dispoziție 24 de ore.", "Este urgent!", "Accesați în 24h:", "Grăbiți-vă, linkul expiră într-o oră.",

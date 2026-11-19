@@ -127,14 +127,10 @@ def main():
     P, Y = predict(model, dl, device)
     th, report = {}, []
     for j, fl in enumerate(FLAGS):
-        best = (0.5, -1, 0, 0)
-        for t in np.arange(0.3, 0.96, 0.05):
-            fb, prec, rec, _ = f_beta(P[:, j], Y[:, j], t)
-            if fb > best[1]:
-                best = (round(float(t), 2), fb, prec, rec)
-        th[fl] = best[0] if best[1] >= 0.6 else 1.01   # weak on dev -> disabled, rules decide
-        if th[fl] > 1: report.append(f"{fl}: disabled (dev F too low), rules only")
-        report.append(f"{fl:24} th={best[0]:.2f}  F={best[1]:.3f}  P={best[2]:.3f}  R={best[3]:.3f}  support={int(Y[:, j].sum())}")
+        scores = [(round(float(t), 2),) + f_beta(P[:, j], Y[:, j], t)[:3] for t in np.arange(0.3, 0.96, 0.05)]
+        top = max(sc[1] for sc in scores)
+        tied = [sc for sc in scores if sc[1] >= top - 0.002]
+        best = tied[len(tied) // 2]   # middle of the best range, not its lowest edge
     print("\n".join(report))
 
     os.makedirs(a.out, exist_ok=True)
