@@ -1,0 +1,16 @@
+{
+  "id": "V03",
+  "channel": "sms",
+  "sender": {
+    "name": "BancaDunarea",
+    "address": "BancaDunarea",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Banca Dunărea: Codul de confirmare este 482913. Nu comunicați acest cod nimănui, nici angajaților băncii."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "TN05",
+  "channel": "sms",
+  "sender": {
+    "name": "BancaDunarea",
+    "address": "BancaDunarea",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Banca Dunărea: Extrasul de cont pentru luna octombrie este disponibil în aplicație."
+    }
+  ]
+}

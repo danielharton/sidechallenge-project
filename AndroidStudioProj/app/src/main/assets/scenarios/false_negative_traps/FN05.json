@@ -1,0 +1,36 @@
+{
+  "id": "FN05",
+  "channel": "call_transcript",
+  "sender": {
+    "name": null,
+    "address": "+40 7xx xxx 309",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Alo, bunico? Ghici cine e!"
+    },
+    {
+      "n": 2,
+      "from": "reader",
+      "text": "Tu ești, Alin?"
+    },
+    {
+      "n": 3,
+      "from": "sender",
+      "text": "Da, eu, Alin! Am o problemă mare, am lovit pe cineva cu mașina."
+    },
+    {
+      "n": 4,
+      "from": "reader",
+      "text": "Vai de mine!"
+    },
+    {
+      "n": 5,
+      "from": "sender",
+      "text": "Vine un avocat la tine să ia 5.000 euro cash, ca să nu intru la închisoare. Nu spune nimănui."
+    }
+  ]
+}

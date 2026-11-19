@@ -1,0 +1,16 @@
+{
+  "id": "TN02",
+  "channel": "sms",
+  "sender": {
+    "name": "CurierExpres",
+    "address": "CurierExpres",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "CurierExpres: Coletul AWB 5521087 a fost predat. Mulțumim că ați ales CurierExpres!"
+    }
+  ]
+}

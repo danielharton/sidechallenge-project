@@ -1,0 +1,51 @@
+{
+  "id": "T04",
+  "channel": "chat",
+  "sender": {
+    "name": "Alex M.",
+    "address": "alex_m_1987",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Bună seara! Scuze, cred că am greșit persoana... dar ce poză frumoasă aveți la profil 🙂"
+    },
+    {
+      "n": 2,
+      "from": "reader",
+      "text": "Nu-i nimic."
+    },
+    {
+      "n": 3,
+      "from": "sender",
+      "text": "Mă numesc Alex, lucrez ca inginer în Germania. Dumneavoastră cu ce vă ocupați?"
+    },
+    {
+      "n": 4,
+      "from": "reader",
+      "text": "Sunt pensionară."
+    },
+    {
+      "n": 5,
+      "from": "sender",
+      "text": "Ce frumos. Eu în timpul liber mă ocup de investiții, unchiul meu m-a învățat."
+    },
+    {
+      "n": 6,
+      "from": "reader",
+      "text": "Interesant."
+    },
+    {
+      "n": 7,
+      "from": "sender",
+      "text": "Pot să vă arăt și pe dumneavoastră. Cu doar 500 de lei, în două săptămâni îi faceți 2.000, sigur, fără risc."
+    },
+    {
+      "n": 8,
+      "from": "sender",
+      "text": "Vă trimit linkul platformei: cryptoprofit-ro.com. Faceți depunerea azi, că mâine se închide oferta."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "V05",
+  "channel": "sms",
+  "sender": {
+    "name": "CurierExpres",
+    "address": "CurierExpres",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "CurierExpres: Coletul AWB 4821930 va fi livrat azi, între 12:00 și 16:00. Ramburs: 0 lei. Urmărire: curierexpres.ro/awb"
+    }
+  ]
+}

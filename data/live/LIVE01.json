@@ -1,0 +1,16 @@
+{
+  "id": "LIVE01",
+  "channel": "sms",
+  "sender": {
+    "name": null,
+    "address": null,
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Bună ziua! Contul dumneavoastră bancar va fi blocat în 30 de minute. Pentru a evita suspendarea, confirmați codul primit prin SMS la acest număr. Nu contactați banca până la finalizarea verificării."
+    }
+  ]
+}

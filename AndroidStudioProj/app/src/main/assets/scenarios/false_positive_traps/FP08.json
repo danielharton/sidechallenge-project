@@ -1,0 +1,16 @@
+{
+  "id": "FP08",
+  "channel": "sms",
+  "sender": {
+    "name": "BancaDunarea",
+    "address": "BancaDunarea",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Banca Dunărea: Atenție la mesajele false! Nu vă cerem niciodată parola, PIN-ul sau codurile primite prin SMS. Nu intrați pe linkuri primite prin mesaj."
+    }
+  ]
+}

@@ -2,6 +2,16 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+// ── Auto-sync all JSON scenarios from data/ into assets/scenarios/ ──
+val syncScenarios by tasks.registering(Sync::class) {
+    from("${rootDir}/../data") {
+        include("**/*.json")
+        exclude("official_catalog.json")
+    }
+    into("${projectDir}/src/main/assets/scenarios")
+}
+tasks.named("preBuild") { dependsOn(syncScenarios) }
+
 android {
     namespace = "com.danielharton.scamshieldcompanion"
     compileSdk {

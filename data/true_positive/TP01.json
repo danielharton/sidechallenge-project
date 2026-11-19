@@ -1,0 +1,16 @@
+{
+  "id": "TP01",
+  "channel": "sms",
+  "sender": {
+    "name": null,
+    "address": "+40 7xx xxx 410",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Banca Dunărea: Am detectat o plată suspectă de 3.400 lei. Dacă nu ați făcut-o, confirmați urgent datele cardului pe bancadunarea-verificare.com"
+    }
+  ]
+}

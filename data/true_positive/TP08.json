@@ -1,0 +1,26 @@
+{
+  "id": "TP08",
+  "channel": "chat",
+  "sender": {
+    "name": "Cumparator PiataMea",
+    "address": "user_99812",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Buna, mai e valabil frigiderul?"
+    },
+    {
+      "n": 2,
+      "from": "reader",
+      "text": "Da"
+    },
+    {
+      "n": 3,
+      "from": "sender",
+      "text": "Perfect, am facut plata. Ca sa primiti banii completati numarul cardului si CVV aici: piatamea-livrare.net"
+    }
+  ]
+}

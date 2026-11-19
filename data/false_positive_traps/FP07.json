@@ -1,0 +1,16 @@
+{
+  "id": "FP07",
+  "channel": "whatsapp",
+  "sender": {
+    "name": "Maria (vecina)",
+    "address": "+40 7xx xxx 260",
+    "known_contact": true
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Am făcut un grup pe Telegram pentru blocul nostru, vă adaug și pe dumneavoastră?"
+    }
+  ]
+}

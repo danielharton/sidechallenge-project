@@ -1,0 +1,16 @@
+{
+  "id": "FP06",
+  "channel": "sms",
+  "sender": {
+    "name": "BancaDunarea",
+    "address": "BancaDunarea",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Banca Dunărea: Codul pentru plata de 89 lei la MegaShop este 553201. Codul expiră în 5 minute. Nu îl comunicați nimănui."
+    }
+  ]
+}

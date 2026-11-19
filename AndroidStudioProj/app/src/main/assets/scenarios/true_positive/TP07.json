@@ -1,0 +1,16 @@
+{
+  "id": "TP07",
+  "channel": "whatsapp",
+  "sender": {
+    "name": null,
+    "address": "+1 xxx xxx 7781",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Microsoft Security: telefonul dvs. are un virus. Instalați TeamViewer acum pentru curățare."
+    }
+  ]
+}
