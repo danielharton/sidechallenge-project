@@ -58,7 +58,6 @@ public class ScamNotificationListener extends NotificationListenerService {
         if (!WHATSAPP_PACKAGES.contains(pkg)) return;          // only WhatsApp is sent anywhere
 
         Notification n = sbn.getNotification();
-        if ((n.flags & Notification.FLAG_GROUP_SUMMARY) != 0) return;
 
         IncomingMessage msg = extract(pkg, n);
         if (msg == null) return;
@@ -145,6 +144,20 @@ public class ScamNotificationListener extends NotificationListenerService {
 
         CharSequence big = extras.getCharSequence(Notification.EXTRA_BIG_TEXT);
         String fallbackText = str(big != null ? big : extras.getCharSequence(Notification.EXTRA_TEXT));
+        if (fallbackText == null) {
+            CharSequence[] lines = extras.getCharSequenceArray(Notification.EXTRA_TEXT_LINES);
+            if (lines != null) {
+                StringBuilder joined = new StringBuilder();
+                for (CharSequence line : lines) {
+                    String value = str(line);
+                    if (value == null || value.trim().isEmpty()
+                            || NOT_A_MESSAGE.matcher(value.trim()).matches()) continue;
+                    if (joined.length() > 0) joined.append("\n");
+                    joined.append(value.trim());
+                }
+                fallbackText = joined.length() == 0 ? null : joined.toString();
+            }
+        }
         if (text == null || text.trim().startsWith("Eu: ")) {
             text = fallbackText;
         }
