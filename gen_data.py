@@ -121,6 +121,7 @@ POOL = {
     "RF_CHANNEL_SWITCH": [
         "Hai să vorbim pe Telegram.", "Scrie-mi pe Signal, e mai sigur.", "Adaugă-mă pe Telegram la @{h}.",
         "Continuăm pe Viber.",
+        
     ],
 }
 

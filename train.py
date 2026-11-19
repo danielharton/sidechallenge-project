@@ -131,6 +131,9 @@ def main():
         top = max(sc[1] for sc in scores)
         tied = [sc for sc in scores if sc[1] >= top - 0.002]
         best = tied[len(tied) // 2]   # middle of the best range, not its lowest edge
+        th[fl] = best[0] if best[1] >= 0.6 else 1.01   # weak on dev -> disabled, rules decide
+        if th[fl] > 1: report.append(f"{fl}: disabled (dev F too low), rules only")
+        report.append(f"{fl:24} th={best[0]:.2f}  F={best[1]:.3f}  P={best[2]:.3f}  R={best[3]:.3f}  support={int(Y[:, j].sum())}")
     print("\n".join(report))
 
     os.makedirs(a.out, exist_ok=True)
