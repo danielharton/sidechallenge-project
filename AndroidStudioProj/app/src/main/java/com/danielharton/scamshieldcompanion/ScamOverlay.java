@@ -39,7 +39,10 @@ public final class ScamOverlay {
     }
 
     public static void show(Context appContext, IncomingMessage msg, AnalysisResult result, boolean networkBlocked) {
-        if (view != null) return;
+        if (view != null) {
+            update(msg, result, networkBlocked);
+            return;
+        }
         Context ctx = new ContextThemeWrapper(appContext, android.R.style.Theme_DeviceDefault_Light_NoActionBar);
         WindowManager wm = (WindowManager) appContext.getSystemService(Context.WINDOW_SERVICE);
         View root = LayoutInflater.from(ctx).inflate(R.layout.overlay_warning, null);
@@ -129,6 +132,32 @@ public final class ScamOverlay {
         button.animate().scaleX(1.04f).scaleY(1.04f).setDuration(250)
                 .withEndAction(() -> button.animate().scaleX(1f).scaleY(1f).setDuration(250).start())
                 .start();
+    }
+
+    public static void update(IncomingMessage msg, AnalysisResult result, boolean networkBlocked) {
+        if (view == null) return;
+        Context ctx = view.getContext();
+        boolean scam = "SCAM".equals(result.verdict);
+        int accent = ContextCompat.getColor(ctx, scam ? R.color.scam_red : R.color.warn_amber);
+
+        TextView title = view.findViewById(R.id.overlay_title);
+        title.setText(scam ? R.string.overlay_title : R.string.overlay_title_suspicious);
+        title.setTextColor(accent);
+        ((TextView) view.findViewById(R.id.overlay_icon)).setTextColor(accent);
+        GradientDrawable card = (GradientDrawable) view.findViewById(R.id.overlay_card).getBackground().mutate();
+        card.setStroke(dp(ctx, 5), accent);
+
+        ((TextView) view.findViewById(R.id.overlay_score)).setText(
+                "Scor de risc " + result.riskScore + "/100 · " + result.scamType);
+        ((TextView) view.findViewById(R.id.overlay_warning)).setText(
+                TextUtils.isEmpty(result.warningRo) ? "Mesajul are semne de înșelătorie. Nu răspundeți și nu dați date." : result.warningRo);
+        ((TextView) view.findViewById(R.id.overlay_block_status)).setText(
+                networkBlocked ? R.string.overlay_blocked : R.string.overlay_not_blocked);
+        ((TextView) view.findViewById(R.id.overlay_sender)).setText(msg.senderName);
+        ((TextView) view.findViewById(R.id.overlay_phone)).setText(
+                msg.phoneNumber != null ? msg.phoneNumber : (msg.knownContact ? "salvat în agendă (WhatsApp nu arată numărul)" : "necunoscut"));
+        ((TextView) view.findViewById(R.id.overlay_message)).setText(msg.text);
+        ((TextView) view.findViewById(R.id.overlay_flags)).setText(TextUtils.join("  ", result.redFlags));
     }
 
     public static void dismiss() {
