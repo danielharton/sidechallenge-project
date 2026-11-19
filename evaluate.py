@@ -88,9 +88,10 @@ def main():
                 line += f"  expected {e['verdict']} {e['scam_type']} fa={e['first_alert']}"
             line += diff
         print(line)
-    if exp:
+    if exp and total_max:
         print(f"\nAccuracy points: {total}/{total_max}  -> {30 * max(total, 0) / total_max:.1f} / 30")
-
+    elif exp:
+        print("\nNo IDs matched the answer CSV. Wrong folder/CSV pair?")
     if a.out:
         with open(a.out, "w", newline="", encoding="utf-8") as f:
             w = csv.writer(f)

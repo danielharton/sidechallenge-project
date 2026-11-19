@@ -1,5 +1,5 @@
-model_out/
 model_out_v1/
+model_out_old/
 model_out2/
 data/train2.jsonl
 data/dev2.jsonl
@@ -7,3 +7,4 @@ __pycache__/
 *.pyc
 data/train.jsonl
 data/dev.jsonl
+model_out.rar

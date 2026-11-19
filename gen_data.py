@@ -37,7 +37,7 @@ def money():
     return R.choice(["1.850", "2.500", "750", "3.000", "1.200", "499", "4.300", "900", "15.000", "2,99", "5,49", "12"])
 
 
-NAMES_M = ["Andrei", "Mihai", "Alex", "Radu", "Vlad", "Ionuț", "Cristi", "Bogdan", ]
+NAMES_M = ["Andrei", "Mihai", "Alex", "Radu", "Vlad", "Ionuț", "Cristi", "Bogdan"]
 NAMES_F = ["Ioana", "Maria", "Elena", "Ana", "Cristina", "Diana", "Raluca", "Andreea"]
 REL = ["mami", "mama", "tati", "bunico", "mamă"]
 
@@ -71,7 +71,6 @@ POOL = {
         "Contul dumneavoastră a fost compromis.",
         "Dacă nu răspundeți, veți pierde accesul la cont.", 
         "Telefonul dvs. a fost accesat de persoane neautorizate. Apăsați pe următorul link pentru a-l recupera",
-        
     ],
     "RF_URGENCY": [
         "Aveți la dispoziție 24 de ore.", "Este urgent!", "Accesați în 24h:", "Grăbiți-vă, linkul expiră într-o oră.",
@@ -104,7 +103,7 @@ POOL = {
         "Descărcați RustDesk, e gratuit, ca să rezolvăm problema.",
     ],
     "RF_NEW_NUMBER": [
-        "Bună {rel}, mi s-a stricat telefonul, ăsta e numărul nou. Salvează-l 😘", "{rel}, am schimbat numărul, ăsta e cel nou.",
+        "Bună {rel}, mi s-a stricat telefonul, ăsta e numărul nou. Salvează-l", "{rel}, am schimbat numărul, ăsta e cel nou.",
         "Salut {rel}, mi-am pierdut telefonul, scrie-mi aici pe numărul nou.", "Bună, sunt eu, {rel}, am număr nou.",
     ],
     "RF_SECRECY": [
@@ -117,6 +116,10 @@ POOL = {
         "Vești bune: pensia dumneavoastră va crește cu 312 lei.", "Profit garantat de 20% pe lună.",
         "Câștigi 300 lei pe zi din like-uri.", "Randament garantat, recomandat de experți.",
         "Ai primit un bonus de 500 lei.", "Bani ușor, lucrezi de acasă.",
+        "Persoanele pensionare primesc reduceri garantate.",
+        "Ai fost selectat pentru tombola noastră.",
+        "Obține credit fără risc adresa următoare.",
+        "Îți dublezi banii în câteva zile, fără niciun risc.",
     ],
     "RF_EMOTIONAL_PRESSURE": [
         "Am făcut un accident și sunt la poliție.", "Sunt la spital, am nevoie de o operație.",
@@ -125,7 +128,6 @@ POOL = {
     "RF_CHANNEL_SWITCH": [
         "Hai să vorbim pe Telegram.", "Scrie-mi pe Signal, e mai sigur.", "Adaugă-mă pe Telegram la @{h}.",
         "Continuăm pe Viber.",
-
     ],
 }
 
