@@ -1,0 +1,13 @@
+RF_CODE_REQUEST          th=0.60  F=1.000  P=1.000  R=1.000  support=62
+RF_REMOTE_ACCESS         th=0.65  F=1.000  P=1.000  R=1.000  support=29
+RF_DATA_REQUEST          th=0.60  F=1.000  P=1.000  R=1.000  support=132
+RF_PAYMENT_REQUEST       th=0.65  F=1.000  P=1.000  R=1.000  support=273
+RF_SUSPICIOUS_CONTACT    th=0.65  F=1.000  P=1.000  R=1.000  support=172
+RF_NEW_NUMBER            th=0.65  F=1.000  P=1.000  R=1.000  support=50
+RF_SECRECY               th=0.65  F=1.000  P=1.000  R=1.000  support=64
+RF_TOO_GOOD              th=0.65  F=1.000  P=1.000  R=1.000  support=146
+RF_IMPERSONATION         th=0.65  F=1.000  P=1.000  R=1.000  support=229
+RF_URGENCY               th=0.65  F=1.000  P=1.000  R=1.000  support=185
+RF_THREAT                th=0.65  F=1.000  P=1.000  R=1.000  support=115
+RF_EMOTIONAL_PRESSURE    th=0.65  F=1.000  P=1.000  R=1.000  support=80
+RF_CHANNEL_SWITCH        th=0.65  F=1.000  P=1.000  R=1.000  support=63
