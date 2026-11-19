@@ -1,0 +1,16 @@
+{
+  "id": "V02",
+  "channel": "sms",
+  "sender": {
+    "name": null,
+    "address": "+40 7xx xxx 552",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "CurierExpres: Coletul dvs. nu a putut fi livrat. Achitați taxa de reprogramare de 2,99 lei: curierexpres-livrare.info"
+    }
+  ]
+}

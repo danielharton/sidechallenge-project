@@ -1,0 +1,16 @@
+{
+  "id": "V06",
+  "channel": "email",
+  "sender": {
+    "name": "ANAF Rambursări",
+    "address": "notificari@anaf-rambursari.net",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Stimate contribuabil, aveți de primit o rambursare de 1.276 lei. Pentru a o primi, completați datele cardului până la 30.11 pe: anaf-rambursari.net/formular"
+    }
+  ]
+}

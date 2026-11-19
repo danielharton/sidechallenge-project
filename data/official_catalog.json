@@ -1,0 +1,73 @@
+{
+  "red_flag_points": {
+    "RF_CODE_REQUEST": 35,
+    "RF_REMOTE_ACCESS": 35,
+    "RF_DATA_REQUEST": 30,
+    "RF_PAYMENT_REQUEST": 25,
+    "RF_SUSPICIOUS_CONTACT": 25,
+    "RF_NEW_NUMBER": 20,
+    "RF_SECRECY": 20,
+    "RF_TOO_GOOD": 20,
+    "RF_IMPERSONATION": 15,
+    "RF_URGENCY": 15,
+    "RF_THREAT": 15,
+    "RF_EMOTIONAL_PRESSURE": 10,
+    "RF_CHANNEL_SWITCH": 10
+  },
+  "verdict_bands": {
+    "SAFE": [
+      0,
+      24
+    ],
+    "SUSPICIOUS": [
+      25,
+      49
+    ],
+    "SCAM": [
+      50,
+      100
+    ]
+  },
+  "scam_types": [
+    "BANK_IMPERSONATION",
+    "COURIER_FEE",
+    "AUTHORITY_IMPERSONATION",
+    "FAMILY_EMERGENCY",
+    "TECH_SUPPORT",
+    "MARKETPLACE",
+    "ACCOUNT_TAKEOVER",
+    "INVESTMENT",
+    "ROMANCE",
+    "JOB_OFFER",
+    "PRIZE_LOTTERY",
+    "OTHER",
+    "NONE"
+  ],
+  "official_contacts": [
+    {
+      "organisation": "Banca Dunărea",
+      "website": "bancadunarea.ro",
+      "phone": "0800 100 200"
+    },
+    {
+      "organisation": "CurierExpres",
+      "website": "curierexpres.ro",
+      "phone": "0800 300 400"
+    },
+    {
+      "organisation": "PiațaMea",
+      "website": "piatamea.ro",
+      "phone": null
+    },
+    {
+      "organisation": "MegaShop",
+      "website": "megashop.ro",
+      "phone": "0800 500 600"
+    },
+    {
+      "organisation": "ANAF",
+      "website": "anaf.ro",
+      "phone": "031 403 91 60"
+    }
+  ]
+}

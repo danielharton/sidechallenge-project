@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scam Shield</title>
+<style>
+  :root { --safe:#0b6b2e; --safe-bg:#e3f5e8; --sus:#8a5300; --sus-bg:#fff1d6; --scam:#a1121b; --scam-bg:#fde4e4;
+          --ink:#111; --muted:#444; --line:#c9c9c9; --accent:#1846a3; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:20px/1.45 system-ui, "Segoe UI", Arial, sans-serif; color:var(--ink); background:#fafafa; }
+  header { background:#10234d; color:#fff; padding:14px 20px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  header h1 { margin:0; font-size:28px; }
+  header .tag { font-size:18px; opacity:.85; }
+  nav { margin-left:auto; display:flex; gap:8px; }
+  nav button { font-size:18px; padding:8px 14px; border-radius:10px; border:2px solid #fff; background:transparent; color:#fff; cursor:pointer; }
+  nav button.on { background:#fff; color:#10234d; font-weight:700; }
+  main { max-width:1100px; margin:0 auto; padding:18px; }
+  textarea { width:100%; min-height:170px; font-size:20px; padding:14px; border:2px solid var(--line); border-radius:12px; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin:12px 0; }
+  .big { font-size:26px; font-weight:700; padding:18px 30px; border:none; border-radius:14px; background:var(--accent); color:#fff; cursor:pointer; width:100%; }
+  .btn { font-size:19px; padding:10px 16px; border-radius:10px; border:2px solid var(--accent); background:#fff; color:var(--accent); cursor:pointer; }
+  label.chk { font-size:19px; display:flex; gap:8px; align-items:center; }
+  .card { border-radius:16px; padding:20px; margin-top:18px; border:3px solid; }
+  .card.SAFE { background:var(--safe-bg); border-color:var(--safe); }
+  .card.SUSPICIOUS { background:var(--sus-bg); border-color:var(--sus); }
+  .card.SCAM { background:var(--scam-bg); border-color:var(--scam); }
+  .verdict { display:flex; align-items:center; gap:14px; font-size:30px; font-weight:800; }
+  .icon { font-size:46px; line-height:1; }
+  .SAFE .verdict { color:var(--safe); } .SUSPICIOUS .verdict { color:var(--sus); } .SCAM .verdict { color:var(--scam); }
+  .warning { font-size:23px; margin:12px 0; }
+  .meta { font-size:18px; color:var(--muted); }
+  .flags span { display:inline-block; background:#fff; border:1px solid #999; border-radius:8px; padding:2px 8px; margin:3px; font-size:16px; font-family:monospace; }
+  .msg { border-radius:12px; padding:10px 14px; margin:8px 0; max-width:85%; background:#fff; border:1px solid var(--line); }
+  .msg.reader { margin-left:auto; background:#eef3ff; }
+  .msg.alert { outline:4px solid var(--scam); }
+  .msg .n { font-size:15px; color:var(--muted); }
+  .msg .nf { font-size:15px; color:var(--scam); font-family:monospace; }
+  mark { background:#ffd54d; }
+  table { width:100%; border-collapse:collapse; font-size:19px; background:#fff; }
+  th, td { padding:7px 9px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+  th { background:#10234d; color:#fff; position:sticky; top:0; }
+  tbody tr { cursor:pointer; } tbody tr:hover { background:#f0f4ff; }
+  .pill { font-weight:800; padding:2px 10px; border-radius:8px; white-space:nowrap; }
+  .pill.SAFE { background:var(--safe); color:#fff; } .pill.SUSPICIOUS { background:#c77800; color:#fff; } .pill.SCAM { background:var(--scam); color:#fff; }
+  td.flagcell { font-family:monospace; font-size:15px; }
+  .summary { display:flex; gap:12px; flex-wrap:wrap; margin:10px 0 14px; font-size:22px; font-weight:700; }
+  .summary div { padding:8px 14px; border-radius:10px; background:#fff; border:2px solid var(--line); }
+  .hidden { display:none; }
+  dialog { width:min(900px, 96vw); border:none; border-radius:16px; padding:0; }
+  dialog .inner { padding:20px; max-height:85vh; overflow:auto; }
+  .trusted { font-size:18px; }
+  @media (max-width:600px) { body { font-size:19px; } .verdict { font-size:25px; } .warning { font-size:21px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>🛡️ Scam Shield</h1>
+  <span class="tag">Verificați un mesaj înainte să răspundeți</span>
+  <nav>
+    <button id="tabCheck" class="on" onclick="tab('check')">Verifică</button>
+    <button id="tabDash" onclick="tab('dash')">Dashboard</button>
+    <button id="lang" onclick="toggleLang()">EN</button>
+  </nav>
+</header>
+
+<main>
+  <!-- ================= CHECK ONE MESSAGE ================= -->
+  <section id="check">
+    <p style="margin:6px 0 10px">Lipiți aici mesajul primit (sau deschideți un fișier):</p>
+    <textarea id="txt" placeholder="Ex.: Banca: Cardul dvs. a fost blocat. Accesați..."></textarea>
+    <div class="row">
+      <label class="chk"><input type="checkbox" id="known" style="width:24px;height:24px"> Expeditorul este în agenda mea</label>
+      <label class="btn">📂 Deschide fișier <input type="file" id="one" accept=".json,.txt" class="hidden"></label>
+    </div>
+    <button class="big" onclick="checkText()">🔍 Verifică mesajul</button>
+    <p class="meta">Pentru o conversație: câte un mesaj pe rând; răspunsurile dumneavoastră încep cu „&gt;”.</p>
+    <div id="result"></div>
+  </section>
+
+  <!-- ================= DASHBOARD ================= -->
+  <section id="dash" class="hidden">
+    <div class="row">
+      <label class="btn">📁 Încarcă un dosar <input type="file" id="folder" webkitdirectory multiple class="hidden"></label>
+      <label class="btn">📄 Încarcă fișiere <input type="file" id="files" multiple accept=".json" class="hidden"></label>
+      <button class="btn" onclick="exportCsv()">⬇️ Export CSV</button>
+    </div>
+    <div class="summary" id="summary"></div>
+    <table>
+      <thead><tr><th>ID</th><th>Verdict</th><th>Scam type</th><th>Risk</th><th>First alert</th><th>Red flags</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </section>
+
+  <p class="trusted">📞 Persoană de încredere: <input id="trustedNr" placeholder="ex. 07xx xxx xxx" style="font-size:18px;padding:4px 8px;width:200px">
+    <button class="btn" onclick="saveTrusted()">Salvează</button></p>
+</main>
+
+<dialog id="dlg"><div class="inner" id="dlgBody"></div>
+  <div style="padding:0 20px 20px"><button class="btn" onclick="dlg.close()">Închide</button></div></dialog>
+
+<script>
+const ICON = {SAFE:"✅", SUSPICIOUS:"⚠️", SCAM:"⛔"};
+const LABEL = {ro:{SAFE:"Pare în regulă", SUSPICIOUS:"Atenție, verificați înainte să răspundeți", SCAM:"Pare o țeapă! Nu răspundeți"},
+               en:{SAFE:"Looks fine", SUSPICIOUS:"Careful, check before replying", SCAM:"Looks like a scam! Do not reply"}};
+const FLAG_RO = {RF_CODE_REQUEST:"cere un cod", RF_REMOTE_ACCESS:"vrea control la distanță", RF_DATA_REQUEST:"cere date personale/card",
+  RF_PAYMENT_REQUEST:"cere bani", RF_SUSPICIOUS_CONTACT:"adresă/număr fals", RF_NEW_NUMBER:"număr nou", RF_SECRECY:"cere secret",
+  RF_TOO_GOOD:"prea frumos ca să fie adevărat", RF_IMPERSONATION:"se dă drept altcineva", RF_URGENCY:"vă grăbește",
+  RF_THREAT:"amenință", RF_EMOTIONAL_PRESSURE:"presiune emoțională", RF_CHANNEL_SWITCH:"mută discuția în altă aplicație"};
+let lang = "ro", rows = [], lastResult = null;
+let trusted = ""; try { trusted = localStorage.getItem("trusted") || ""; } catch(e) {}
+document.getElementById("trustedNr").value = trusted;
+
+function esc(s){ return String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function tab(t){ for (const x of ["check","dash"]) document.getElementById(x).classList.toggle("hidden", x!==t);
+  document.getElementById("tabCheck").classList.toggle("on", t==="check"); document.getElementById("tabDash").classList.toggle("on", t==="dash"); }
+function toggleLang(){ lang = lang==="ro" ? "en" : "ro"; document.getElementById("lang").textContent = lang==="ro" ? "EN" : "RO";
+  if (lastResult) show(lastResult); }
+function saveTrusted(){ trusted = document.getElementById("trustedNr").value.trim(); try { localStorage.setItem("trusted", trusted); } catch(e) {} if (lastResult) show(lastResult); }
+
+async function post(url, body){ const r = await fetch(url, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)}); return r.json(); }
+
+async function checkText(){
+  const text = document.getElementById("txt").value;
+  if (!text.trim()) { document.getElementById("result").innerHTML = `<p class="warning">Lipiți mai întâi un mesaj.</p>`; return; }
+  show(await post("/api/analyze_text", {text, known_contact: document.getElementById("known").checked}));
+}
+
+document.getElementById("one").addEventListener("change", async e => {
+  const f = e.target.files[0]; if (!f) return;
+  const txt = await f.text();
+  try { show(await post("/api/analyze", JSON.parse(txt))); }
+  catch(err) { document.getElementById("txt").value = txt; checkText(); }
+  e.target.value = "";
+});
+
+function warningOf(r){ return lang==="ro" ? r.warning_ro : r.warning_en; }
+
+function speak(text){ try { const u = new SpeechSynthesisUtterance(text); u.lang = lang==="ro" ? "ro-RO" : "en-US"; u.rate = 0.9;
+  speechSynthesis.cancel(); speechSynthesis.speak(u); } catch(e) {} }
+
+function cardHtml(r){
+  if (r.error) return `<div class="card SUSPICIOUS"><p class="warning">${esc(r.error)}</p></div>`;
+  const v = r.verdict;
+  const callBtn = (v !== "SAFE" && trusted) ? `<a class="btn" href="tel:${esc(trusted)}">📞 Sună persoana de încredere</a>` : "";
+  return `<div class="card ${v}">
+    <div class="verdict"><span class="icon">${ICON[v]}</span><span>${LABEL[lang][v]}</span></div>
+    <p class="warning">${esc(warningOf(r))}</p>
+    <div class="row"><button class="btn" onclick='speak(${JSON.stringify(warningOf(r))})'>🔊 Citește cu voce tare</button>${callBtn}</div>
+    <p class="meta">Scor de risc: <b>${r.risk_score}</b>/100 · Tip: ${esc(r.scam_type)}${r.first_alert ? " · Prima alertă: mesajul " + r.first_alert : ""}</p>
+    <div class="flags">${r.red_flags.map(f => `<span title="${esc(FLAG_RO[f]||"")}">${f}</span>`).join("")}</div>
+    ${r.messages && r.messages.length > 1 ? `<h3>Conversația</h3>` + threadHtml(r) : ""}
+  </div>`;
+}
+
+function threadHtml(r){
+  return r.messages.map(m => `<div class="msg ${m.from==="reader"?"reader":""} ${m.n===r.first_alert?"alert":""}">
+    <div class="n">#${m.n} ${m.from==="reader"?"(dumneavoastră)":""} ${m.n===r.first_alert?"⛔ <b>AICI apare primul semnal de alarmă</b>":""}</div>
+    <div>${esc(m.text)}</div>
+    ${m.new_flags && m.new_flags.length ? `<div class="nf">+ ${m.new_flags.map(f => f + " (" + (FLAG_RO[f]||"") + ")").join(", ")} → scor ${m.score_after}</div>` : ""}
+  </div>`).join("");
+}
+
+function show(r){ lastResult = r; document.getElementById("result").innerHTML = cardHtml(r); document.getElementById("result").scrollIntoView({behavior:"smooth"}); }
+
+// ---------------- dashboard
+async function loadFiles(fileList){
+  const scenarios = [];
+  for (const f of fileList) { if (!f.name.toLowerCase().endsWith(".json")) continue;
+    try { scenarios.push(JSON.parse(await f.text())); } catch(e) { scenarios.push({id:f.name, messages:[], error:"invalid"}); } }
+  rows = await post("/api/batch", scenarios);
+  renderDash();
+}
+document.getElementById("folder").addEventListener("change", e => { loadFiles(e.target.files); e.target.value = ""; });
+document.getElementById("files").addEventListener("change", e => { loadFiles(e.target.files); e.target.value = ""; });
+
+function renderDash(){
+  const c = {SCAM:0, SUSPICIOUS:0, SAFE:0}; rows.forEach(r => { if (c[r.verdict] !== undefined) c[r.verdict]++; });
+  document.getElementById("summary").innerHTML = `<div>${rows.length} scenarii</div><div style="color:var(--scam)">⛔ ${c.SCAM} SCAM</div>
+    <div style="color:var(--sus)">⚠️ ${c.SUSPICIOUS} SUSPICIOUS</div><div style="color:var(--safe)">✅ ${c.SAFE} SAFE</div>`;
+  document.getElementById("rows").innerHTML = rows.map((r, i) => r.error ? `<tr><td>${esc(r.id)}</td><td colspan="5">Eroare: ${esc(r.error)}</td></tr>` :
+    `<tr onclick="openRow(${i})"><td><b>${esc(r.id)}</b></td><td><span class="pill ${r.verdict}">${ICON[r.verdict]} ${r.verdict}</span></td>
+     <td>${esc(r.scam_type)}</td><td>${r.risk_score}</td><td>${r.first_alert ?? ""}</td><td class="flagcell">${r.red_flags.join(" ")}</td></tr>`).join("");
+}
+function openRow(i){ const r = rows[i]; lastResult = r;
+  document.getElementById("dlgBody").innerHTML = `<h2 style="margin-top:0">${esc(r.id)}</h2>` + cardHtml(r); dlg.showModal(); }
+
+function exportCsv(){
+  const lines = ["id,verdict,scam_type,risk_score,first_alert,red_flags"].concat(
+    rows.filter(r => !r.error).map(r => [r.id, r.verdict, r.scam_type, r.risk_score, r.first_alert ?? "", r.red_flags.join(";")].join(",")));
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([lines.join("\n")], {type:"text/csv"}));
+  a.download = "scam_shield_results.csv"; a.click();
+}
+</script>
+</body>
+</html>

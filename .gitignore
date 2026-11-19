@@ -1,0 +1,5 @@
+model_out/
+__pycache__/
+*.pyc
+data/train.jsonl
+data/dev.jsonl

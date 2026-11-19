@@ -1,0 +1,36 @@
+{
+  "id": "V11",
+  "channel": "call_transcript",
+  "sender": {
+    "name": null,
+    "address": "+40 2xx xxx 835",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Bună ziua, doamnă. Sunt Cristina, de la Casa de Pensii, sectorul 3. Facem o actualizare a dosarelor pentru indexarea din ianuarie."
+    },
+    {
+      "n": 2,
+      "from": "reader",
+      "text": "Da, bună ziua."
+    },
+    {
+      "n": 3,
+      "from": "sender",
+      "text": "Vești bune: pensia dumneavoastră va crește cu 312 lei. Ca să nu pierdeți diferența, trebuie doar să vă confirmăm datele."
+    },
+    {
+      "n": 4,
+      "from": "reader",
+      "text": "Ce date?"
+    },
+    {
+      "n": 5,
+      "from": "sender",
+      "text": "Numele complet, CNP-ul și numărul cardului pe care primiți pensia. Vă trimit și un SMS cu un cod de confirmare, pe care mi-l citiți."
+    }
+  ]
+}

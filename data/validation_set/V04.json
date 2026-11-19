@@ -1,0 +1,41 @@
+{
+  "id": "V04",
+  "channel": "whatsapp",
+  "sender": {
+    "name": null,
+    "address": "+40 7xx xxx 318",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Bună mami, mi s-a stricat telefonul, ăsta e numărul nou. Salvează-l 😘"
+    },
+    {
+      "n": 2,
+      "from": "reader",
+      "text": "Cine e?"
+    },
+    {
+      "n": 3,
+      "from": "sender",
+      "text": "Eu, Andrei, cine să fie 😅"
+    },
+    {
+      "n": 4,
+      "from": "reader",
+      "text": "A, bine, puiule."
+    },
+    {
+      "n": 5,
+      "from": "sender",
+      "text": "Mami, am o problemă, trebuie să plătesc azi o factură și nu-mi merge aplicația. Poți să-mi faci tu un transfer de 1.850 lei? Ți-i dau înapoi mâine."
+    },
+    {
+      "n": 6,
+      "from": "sender",
+      "text": "Te rog nu-i spune lui tata, se enervează."
+    }
+  ]
+}

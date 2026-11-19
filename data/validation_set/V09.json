@@ -1,0 +1,16 @@
+{
+  "id": "V09",
+  "channel": "sms",
+  "sender": {
+    "name": null,
+    "address": "+40 7xx xxx 904",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Felicitări! Ați fost ales câștigătorul unui telefon nou la tombola MegaShop. Răspundeți cu DA pentru detalii."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "V10",
+  "channel": "whatsapp",
+  "sender": {
+    "name": "Maria (vecina)",
+    "address": "+40 7xx xxx 260",
+    "known_contact": true
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Bună! Ți-am trimis din greșeală un cod de 6 cifre prin SMS. Mi-l poți trimite înapoi, te rog? E urgent!"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "V01",
+  "channel": "sms",
+  "sender": {
+    "name": "BancaDunarea",
+    "address": "BancaDunarea",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Banca Dunărea: Cardul dvs. a fost blocat temporar din motive de securitate. Pentru deblocare, accesați în 24h: bancadunarea-securitate.com"
+    }
+  ]
+}
