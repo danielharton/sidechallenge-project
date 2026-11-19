@@ -39,6 +39,11 @@ public final class MessageNotifier {
     }
 
     public static void notifyIncoming(Context ctx, ChatStore.Conversation conv) {
+        notifyIncoming(ctx, conv, false);
+    }
+
+    /** @param silent true when the chat is on screen: still posted (for the companion), but without sound/heads-up. */
+    public static void notifyIncoming(Context ctx, ChatStore.Conversation conv, boolean silent) {
         Context c = ctx.getApplicationContext();
         createChannel(c);
         NotificationManagerCompat nm = NotificationManagerCompat.from(c);
@@ -73,6 +78,7 @@ public final class MessageNotifier {
                 .setNumber(conv.unread)
                 .setContentIntent(pi)
                 .setAutoCancel(true)
+                .setSilent(silent)
                 .addPerson(sender);
 
         int totalUnread = 0, chats = 0;

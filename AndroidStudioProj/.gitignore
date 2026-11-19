@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Generated from ../data at build time (see app/build.gradle.kts)
+/app/src/main/assets/scenarios/

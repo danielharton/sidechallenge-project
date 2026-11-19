@@ -2,15 +2,50 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
-// ── Auto-sync all JSON scenarios from data/ into assets/scenarios/ ──
-val syncScenarios by tasks.registering(Sync::class) {
-    from("${rootDir}/../data") {
+// ── Test scenarios: every JSON in <repo>/data is packaged as assets/scenarios/** ──
+// Generated into build/ on every build (and after Clean/Rebuild), so new or edited files in data/
+// are always picked up. Nothing is copied into src/, so there is no stale duplicate to forget.
+abstract class SyncScenariosTask : DefaultTask() {
+    @get:Internal
+    abstract val dataDir: DirectoryProperty
+
+    /** Only the scenario files are tracked, not the large training .jsonl files. */
+    @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    abstract val scenarioFiles: ConfigurableFileCollection
+
+    @get:OutputDirectory
+    abstract val outputDir: DirectoryProperty
+
+    @get:Inject
+    abstract val fs: FileSystemOperations
+
+    @TaskAction
+    fun sync() {
+        fs.sync {
+            from(dataDir) {
+                include("**/*.json")
+                exclude("official_catalog.json")
+            }
+            into(outputDir.dir("scenarios"))
+        }
+    }
+}
+
+val scenariosData = rootProject.layout.projectDirectory.dir("../data")
+val syncScenarios = tasks.register<SyncScenariosTask>("syncScenarios") {
+    dataDir.set(scenariosData)
+    scenarioFiles.from(fileTree(scenariosData) {
         include("**/*.json")
         exclude("official_catalog.json")
-    }
-    into("${projectDir}/src/main/assets/scenarios")
+    })
 }
-tasks.named("preBuild") { dependsOn(syncScenarios) }
+
+androidComponents {
+    onVariants { variant ->
+        variant.sources.assets?.addGeneratedSourceDirectory(syncScenarios, SyncScenariosTask::outputDir)
+    }
+}
 
 android {
     namespace = "com.whatsapp"

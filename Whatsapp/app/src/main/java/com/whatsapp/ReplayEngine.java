@@ -41,8 +41,12 @@ public final class ReplayEngine {
                     ChatStore.add(conv, msg.text, true, !ConnectionMonitor.isOnline());
                 } else {
                     ChatStore.add(conv, msg.text, false, false);
-                    if (!ChatActivity.isOpen(key)) MessageNotifier.notifyIncoming(c, conv);
-                    else conv.unread = 0;
+                    // Always post the notification: the Scam Shield companion only sees messages through
+                    // notifications, so skipping it while the chat is open would hide the scam from it.
+                    // With the chat open it is posted silently and the unread counter is not bumped.
+                    boolean open = ChatActivity.isOpen(key);
+                    if (open) conv.unread = 0;
+                    MessageNotifier.notifyIncoming(c, conv, open);
                 }
             };
             QUEUE.add(r);

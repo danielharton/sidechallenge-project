@@ -97,6 +97,7 @@ public class ScamNotificationListener extends NotificationListenerService {
         String sender = null;
         String text = null;
         String phone = null;
+        boolean hasIncoming = false;
 
         NotificationCompat.MessagingStyle style =
                 NotificationCompat.MessagingStyle.extractMessagingStyleFromNotification(n);
@@ -112,6 +113,7 @@ public class ScamNotificationListener extends NotificationListenerService {
 
                     boolean isUser = isUserMessage(style, m);
                     if (!isUser) {
+                        hasIncoming = true;
                         Person p = m.getPerson();
                         if (p != null) {
                             if (sender == null && p.getName() != null) {
@@ -158,7 +160,8 @@ public class ScamNotificationListener extends NotificationListenerService {
                 fallbackText = joined.length() == 0 ? null : joined.toString();
             }
         }
-        if (text == null || text.trim().startsWith("Eu: ")) {
+        // Only the user's own replies (no incoming line): fall back to the notification text.
+        if (text == null || !hasIncoming) {
             text = fallbackText;
         }
         if (sender == null) sender = title;
