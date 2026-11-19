@@ -1,0 +1,16 @@
+{
+  "id": "T07",
+  "channel": "whatsapp",
+  "sender": {
+    "name": "Cristi Serviciu",
+    "address": "+40 7xx xxx 833",
+    "known_contact": true
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "salut, scz ca te deranjez, participa fiica mea la un concurs de dans si are nevoie de voturi. ti-a venit un cod pe sms de la whatsapp, mi-l dai si mie? doar 6 cifre"
+    }
+  ]
+}
