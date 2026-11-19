@@ -27,7 +27,7 @@ public class ScamNotificationListener extends NotificationListenerService {
     public static final Set<String> WHATSAPP_PACKAGES =
             new HashSet<>(Arrays.asList("com.whatsapp", "com.whatsapp.w4b"));
 
-    private static final Pattern PHONE = Pattern.compile("^\\+?[0-9][0-9\\s\\-().]{6,}$");
+    private static final Pattern PHONE = Pattern.compile("^\\+?[0-9xX*][0-9xX*\\s\\-().]{6,}$");
     // WhatsApp status/summary lines that are not real messages.
     private static final Pattern NOT_A_MESSAGE = Pattern.compile(
             "(?i)^(\\d+ (mesaje|messages|new messages|mesaje noi).*|.*(checking for new messages|se caută mesaje noi|backup|în desfășurare).*)$");
@@ -89,7 +89,7 @@ public class ScamNotificationListener extends NotificationListenerService {
         });
     }
 
-    /** Newest message from MessagingStyle when available; otherwise title + (big) text. */
+    /** Full conversation from MessagingStyle when available; otherwise title + (big) text. */
     static IncomingMessage extract(String pkg, Notification n) {
         Bundle extras = n.extras;
         if (extras == null) return null;
@@ -104,13 +104,39 @@ public class ScamNotificationListener extends NotificationListenerService {
         if (style != null) {
             List<NotificationCompat.MessagingStyle.Message> msgs = style.getMessages();
             if (!msgs.isEmpty()) {
-                NotificationCompat.MessagingStyle.Message last = msgs.get(msgs.size() - 1);
-                text = str(last.getText());
-                Person p = last.getPerson();
-                if (p != null) {
-                    sender = str(p.getName());
-                    phone = phoneFromUri(p.getUri());
+                StringBuilder conv = new StringBuilder();
+                for (NotificationCompat.MessagingStyle.Message m : msgs) {
+                    CharSequence cs = m.getText();
+                    if (cs == null) continue;
+                    String line = cs.toString().trim();
+                    if (line.isEmpty() || NOT_A_MESSAGE.matcher(line).matches()) continue;
+
+                    boolean isUser = isUserMessage(style, m);
+                    if (!isUser) {
+                        Person p = m.getPerson();
+                        if (p != null) {
+                            if (sender == null && p.getName() != null) {
+                                sender = str(p.getName());
+                            }
+                            if (phone == null && p.getUri() != null) {
+                                phone = phoneFromUri(p.getUri());
+                            }
+                        }
+                    }
+
+                    String singleLine = line.replace('\r', ' ').replace('\n', ' ').trim();
+                    if (conv.length() > 0) conv.append("\n");
+                    if (isUser) {
+                        conv.append("Eu: ").append(singleLine);
+                    } else {
+                        conv.append(singleLine);
+                    }
                 }
+
+                if (conv.length() > 0) {
+                    text = conv.toString();
+                }
+
                 if (sender == null && style.getConversationTitle() != null) {
                     sender = str(style.getConversationTitle());
                 }
@@ -134,11 +160,36 @@ public class ScamNotificationListener extends NotificationListenerService {
             }
         }
         boolean senderIsNumber = sender != null && PHONE.matcher(sender.trim()).matches();
-        if (phone == null && senderIsNumber) phone = sender.trim();
+        if (senderIsNumber) {
+            phone = sender.trim();
+        } else if (phone == null && sender != null && PHONE.matcher(sender.trim()).matches()) {
+            phone = sender.trim();
+        }
 
         // WhatsApp shows a name for saved contacts and the raw number for strangers.
         boolean known = sender != null && !senderIsNumber;
         return new IncomingMessage(pkg, sender == null ? "Necunoscut" : sender, phone, text.trim(), known);
+    }
+
+    private static boolean isUserMessage(NotificationCompat.MessagingStyle style, NotificationCompat.MessagingStyle.Message m) {
+        Person p = m.getPerson();
+        if (p == null) return true;
+        Person user = style.getUser();
+        if (user != null) {
+            if (p.equals(user)) return true;
+            if (p.getKey() != null && p.getKey().equals(user.getKey())) return true;
+            CharSequence uName = user.getName();
+            CharSequence pName = p.getName();
+            if (uName != null && pName != null && uName.toString().equalsIgnoreCase(pName.toString())) return true;
+        }
+        CharSequence name = p.getName();
+        if (name != null) {
+            String s = name.toString().trim();
+            if ("eu".equalsIgnoreCase(s) || "me".equalsIgnoreCase(s) || "you".equalsIgnoreCase(s)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static String phoneFromUri(String uri) {

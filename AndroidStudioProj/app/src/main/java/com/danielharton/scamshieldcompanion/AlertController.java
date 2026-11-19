@@ -11,7 +11,6 @@ public final class AlertController {
 
     public static void raise(Context context, IncomingMessage msg, AnalysisResult result) {
         Context app = context.getApplicationContext();
-        if (ScamOverlay.isShowing()) return; // one warning at a time; WhatsApp is already blocked
 
         // Only claim "WhatsApp is blocked" when there is something to block and we may start a VPN.
         boolean vpnAllowed = VpnService.prepare(app) == null

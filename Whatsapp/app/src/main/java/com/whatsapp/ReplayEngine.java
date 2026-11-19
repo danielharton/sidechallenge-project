@@ -29,6 +29,9 @@ public final class ReplayEngine {
         long step = Settings.delaySeconds(c) * 1000L;
         // Each scenario gets its own chat, even if two files share a sender.
         String key = sc.id + "|" + sc.displayTitle();
+        ChatStore.Conversation initial = ChatStore.getOrCreate(key, sc.displayTitle(), sc.phoneOrNull(), sc.knownContact);
+        initial.messages.clear();
+        initial.unread = 0;
         long t = startDelayMs;
         for (Scenario.Msg m : sc.messages) {
             final Scenario.Msg msg = m;
