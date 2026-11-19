@@ -1,0 +1,26 @@
+{
+  "id": "TN04",
+  "channel": "whatsapp",
+  "sender": {
+    "name": "Maria (vecina)",
+    "address": "+40 7xx xxx 260",
+    "known_contact": true
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Bună! Am udat florile, cheia e la mine."
+    },
+    {
+      "n": 2,
+      "from": "reader",
+      "text": "Mulțumesc mult!"
+    },
+    {
+      "n": 3,
+      "from": "sender",
+      "text": "Cu plăcere, vă aștept la o cafea când vă întoarceți."
+    }
+  ]
+}

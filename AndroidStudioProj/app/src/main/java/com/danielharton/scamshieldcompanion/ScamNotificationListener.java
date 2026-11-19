@@ -32,10 +32,11 @@ public class ScamNotificationListener extends NotificationListenerService {
     private static final Pattern NOT_A_MESSAGE = Pattern.compile(
             "(?i)^(\\d+ (mesaje|messages|new messages|mesaje noi).*|.*(checking for new messages|se caută mesaje noi|backup|în desfășurare).*)$");
 
-    /** In-memory de-duplication: WhatsApp re-posts the same notification many times. */
-    private static final Map<String, Boolean> SEEN = new LinkedHashMap<String, Boolean>(64, 0.75f, true) {
+    /** In-memory de-duplication: WhatsApp re-posts the same notification many times within seconds. */
+    private static final long DEDUP_WINDOW_MS = 60_000;
+    private static final Map<String, Long> SEEN = new LinkedHashMap<String, Long>(64, 0.75f, true) {
         @Override
-        protected boolean removeEldestEntry(Map.Entry<String, Boolean> eldest) {
+        protected boolean removeEldestEntry(Map.Entry<String, Long> eldest) {
             return size() > 300;
         }
     };
@@ -63,9 +64,11 @@ public class ScamNotificationListener extends NotificationListenerService {
         if (msg == null) return;
 
         String key = pkg + "|" + msg.senderName + "|" + msg.text;
+        long now = System.currentTimeMillis();
         synchronized (SEEN) {
-            if (SEEN.containsKey(key)) return;
-            SEEN.put(key, Boolean.TRUE);
+            Long seenAt = SEEN.get(key);
+            if (seenAt != null && now - seenAt < DEDUP_WINDOW_MS) return; // same message re-posted
+            SEEN.put(key, now);
         }
 
         ScamShieldApiClient.analyze(this, msg.text, msg.knownContact, new ScamShieldApiClient.Callback() {

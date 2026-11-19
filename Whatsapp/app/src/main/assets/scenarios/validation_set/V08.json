@@ -1,0 +1,31 @@
+{
+  "id": "V08",
+  "channel": "chat",
+  "sender": {
+    "name": "Cumpărător PiațaMea",
+    "address": "buyer_77421",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Bună ziua, mai este disponibilă bicicleta?"
+    },
+    {
+      "n": 2,
+      "from": "reader",
+      "text": "Da, este."
+    },
+    {
+      "n": 3,
+      "from": "sender",
+      "text": "O iau. Am plătit deja prin Livrare Sigură. Ca să primiți banii, introduceți datele cardului aici: piatamea-plati.com"
+    },
+    {
+      "n": 4,
+      "from": "sender",
+      "text": "Grăbiți-vă, linkul expiră într-o oră."
+    }
+  ]
+}

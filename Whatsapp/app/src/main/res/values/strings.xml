@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">Whatsapp</string>
+    <!-- Deliberately not "WhatsApp": this is a test tool that only reuses the package name. -->
+    <string name="app_name">Test Messenger</string>
+    <string name="channel_messages">Mesaje</string>
+    <string name="me">Eu</string>
+    <string name="online">● Conectat</string>
+    <string name="offline">● Fără conexiune la server – mesajele așteaptă</string>
+    <string name="scenarios">▶ Scenarii de test</string>
+    <string name="clear_all">Șterge tot</string>
+    <string name="empty_list">Nicio conversație.\nApăsați „Scenarii de test” ca să primiți mesaje dintr-un fișier JSON.</string>
+    <string name="type_message">Scrieți un mesaj</string>
+    <string name="send">Trimite</string>
+    <string name="import_json">📂 Importă fișiere JSON</string>
+    <string name="play_folder">Rulează tot folderul</string>
+    <string name="server_url">Server pentru starea conexiunii</string>
+    <string name="delay">Pauză între mesaje (secunde)</string>
+    <string name="save">Salvează</string>
+    <string name="disclaimer">Aplicație de test pentru Scam Shield. Nu este WhatsApp și nu are legătură cu WhatsApp/Meta; folosește doar același nume de pachet, pe emulator.</string>
 </resources>

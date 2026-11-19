@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-  <resources>
-      <color name="black">#FF000000</color>
-      <color name="white">#FFFFFFFF</color>
-  </resources>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="brand">#FF3949AB</color>
+    <color name="brand_dark">#FF283593</color>
+    <color name="chat_bg">#FFECEFF6</color>
+    <color name="bubble_in">#FFFFFFFF</color>
+    <color name="bubble_out">#FFD6DCF5</color>
+    <color name="ink">#FF15181D</color>
+    <color name="muted">#FF5A6270</color>
+    <color name="online">#FF1B7F3B</color>
+    <color name="offline">#FFB3261E</color>
+</resources>

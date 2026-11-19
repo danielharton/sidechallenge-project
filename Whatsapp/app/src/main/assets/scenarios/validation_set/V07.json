@@ -1,0 +1,36 @@
+{
+  "id": "V07",
+  "channel": "call_transcript",
+  "sender": {
+    "name": null,
+    "address": "+40 3xx xxx 117",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Bună ziua, vă sun de la suportul tehnic Windows. Calculatorul dvs. trimite viruși pe internet."
+    },
+    {
+      "n": 2,
+      "from": "reader",
+      "text": "Cum adică? Ce trebuie să fac?"
+    },
+    {
+      "n": 3,
+      "from": "sender",
+      "text": "Instalați programul AnyDesk, ca să vă putem ajuta de la distanță. Este gratuit."
+    },
+    {
+      "n": 4,
+      "from": "reader",
+      "text": "Bine, l-am instalat."
+    },
+    {
+      "n": 5,
+      "from": "sender",
+      "text": "Acum intrați în contul de bancă, să verificăm dacă v-au furat bani."
+    }
+  ]
+}

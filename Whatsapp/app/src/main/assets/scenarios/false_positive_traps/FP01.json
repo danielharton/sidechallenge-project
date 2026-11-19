@@ -1,0 +1,16 @@
+{
+  "id": "FP01",
+  "channel": "sms",
+  "sender": {
+    "name": "BancaDunarea",
+    "address": "BancaDunarea",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Banca Dunărea: Cardul dvs. a fost blocat după 3 încercări greșite de PIN. Pentru deblocare, sunați la 0800 100 200 sau mergeți la orice agenție."
+    }
+  ]
+}

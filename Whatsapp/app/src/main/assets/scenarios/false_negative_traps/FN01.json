@@ -1,0 +1,51 @@
+{
+  "id": "FN01",
+  "channel": "chat",
+  "sender": {
+    "name": "Robert",
+    "address": "robert_eng",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Bună, Elena! Am văzut profilul tău, ai un zâmbet frumos."
+    },
+    {
+      "n": 2,
+      "from": "reader",
+      "text": "Mulțumesc."
+    },
+    {
+      "n": 3,
+      "from": "sender",
+      "text": "Sunt inginer pe o platformă petrolieră, mă simt singur aici."
+    },
+    {
+      "n": 4,
+      "from": "reader",
+      "text": "Îmi pare rău."
+    },
+    {
+      "n": 5,
+      "from": "sender",
+      "text": "Vorbim de două săptămâni și simt că te cunosc de o viață. Te iubesc."
+    },
+    {
+      "n": 6,
+      "from": "reader",
+      "text": "Și eu țin la tine."
+    },
+    {
+      "n": 7,
+      "from": "sender",
+      "text": "Am o problemă la vamă cu un colet pentru tine. Poți să plătești tu 2.500 lei? Ți-i dau înapoi."
+    },
+    {
+      "n": 8,
+      "from": "sender",
+      "text": "Te rog, e urgent, altfel îl pierd."
+    }
+  ]
+}

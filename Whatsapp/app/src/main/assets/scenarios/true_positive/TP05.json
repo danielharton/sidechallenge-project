@@ -1,0 +1,16 @@
+{
+  "id": "TP05",
+  "channel": "sms",
+  "sender": {
+    "name": null,
+    "address": "+40 7xx xxx 118",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Platforma CryptoMax: investiți 1.000 lei și primiți 5.000 lei în 30 de zile, profit garantat! Înscrieți-vă pe cryptomax-profit.net"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "FP05",
+  "channel": "email",
+  "sender": {
+    "name": "MegaShop",
+    "address": "noutati@megashop.ro",
+    "known_contact": false
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Felicitări! Ați câștigat un voucher de 50 lei în campania de fidelitate. Îl găsiți automat în contul dvs. pe megashop.ro."
+    }
+  ]
+}

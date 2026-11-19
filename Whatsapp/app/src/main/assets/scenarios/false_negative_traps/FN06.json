@@ -1,0 +1,16 @@
+{
+  "id": "FN06",
+  "channel": "whatsapp",
+  "sender": {
+    "name": "Dana (colega)",
+    "address": "+40 7xx xxx 615",
+    "known_contact": true
+  },
+  "messages": [
+    {
+      "n": 1,
+      "from": "sender",
+      "text": "Am pus 2.000 lei la un broker și într-o lună am scos 8.000! Îți dau și ție contactul, trebuie doar să depui 1.000 lei azi, că se închide oferta."
+    }
+  ]
+}
