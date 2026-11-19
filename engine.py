@@ -170,7 +170,8 @@ def extract_links(text: str):
             host = None
 
         if host:
-            hosts.append(host)
+            if host and re.search(r"[^\W\d_]", host.rsplit(".", 1)[-1]):
+                hosts.append(host)
 
     return hosts
 
@@ -509,7 +510,7 @@ def rule_flags(text: str, sender: dict, channel: str, context_flags: set, ctx: d
         t_nolink
     )
 
-    explicit_claim = any_re(EXPLICIT_ORG_CLAIM, t_claim)
+    explicit_claim = any_re(EXPLICIT_ORG_CLAIM, t_claim) or any_re(ORG_CLAIM, t_claim)
     sender_claim = sender_claims_org(sender)
 
     if explicit_claim or sender_claim:
@@ -567,7 +568,7 @@ def pick_type(all_text_n: str, flags: set, sender: dict) -> str:
 
     if re.search(
         r"cumparator|vanzator|\banunt|mai (este|e) disponibil|"
-        r"primiti banii|primesti banii|piatamea|\bolx\b|livrare sigura",
+        r"primiti banii|primesti banii|piatamea|livrare sigura",
         t
     ):
         return "MARKETPLACE"
