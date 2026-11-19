@@ -63,11 +63,15 @@ AUTHS = ["ANAF", "Poliția Română", "Casa de Pensii", "Ministerul Finanțelor"
 POOL = {
     "RF_THREAT": [
         "Cardul dvs. a fost blocat temporar din motive de securitate.",
-        "Contul dvs. a fost suspendat.", "Am detectat o tranzacție suspectă, contul va fi blocat.",
-        "Aveți o amendă neplătită și riscați executare silită.", "Calculatorul dvs. este infectat cu viruși.",
-        "Pe numele dvs. a fost deschis un dosar penal.", "Contul dumneavoastră a fost compromis.",
-        "Dacă nu răspundeți, veți pierde accesul la cont.", "Telefonul dvs. a fost spart de hackeri.",
-        "Codul de acces pentru contul de ",
+        "Contul dvs. a fost suspendat.", 
+        "Am detectat o tranzacție suspectă, contul va fi blocat.",
+        "Aveți o amendă neplătită și riscați executare silită.", 
+        "Calculatorul dvs. este infectat cu viruși.",
+        "Pe numele dvs. a fost deschis un dosar penal.", 
+        "Contul dumneavoastră a fost compromis.",
+        "Dacă nu răspundeți, veți pierde accesul la cont.", 
+        "Telefonul dvs. a fost accesat de persoane neautorizate. Apăsați pe următorul link pentru a-l recupera",
+        
     ],
     "RF_URGENCY": [
         "Aveți la dispoziție 24 de ore.", "Este urgent!", "Accesați în 24h:", "Grăbiți-vă, linkul expiră într-o oră.",
@@ -121,7 +125,7 @@ POOL = {
     "RF_CHANNEL_SWITCH": [
         "Hai să vorbim pe Telegram.", "Scrie-mi pe Signal, e mai sigur.", "Adaugă-mă pe Telegram la @{h}.",
         "Continuăm pe Viber.",
-        
+
     ],
 }
 

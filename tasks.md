@@ -1,136 +1,167 @@
-# Scam Shield: team README
+# Scam Shield: tasks and progress
 
-R Systems side challenge, EESTEC LC Bucharest. **Code freeze: 17:00.**
-
-Our app reads a message or a conversation, finds the official red flags, computes the risk score, verdict, scam type and first alert, and shows a calm warning in Romanian. **Everything runs on our laptop. No message is ever sent to a cloud service.**
+R Systems side challenge, EESTEC LC Bucharest, 19 Nov 2026. **Code freeze: 17:00.**
+Repo: https://github.com/danielharton/sidechallenge-project
+Last updated: 13:25
 
 ---
 
-## 1. What is already done
+## 1. Progress so far
 
-| Part | File | Status |
+| Part | Owner | Status |
 |---|---|---|
-| Scoring engine (official formula, verdict bands, first alert, re-score after every message) | `engine.py` | ✅ done |
-| Rules for all 13 red flags, scam type, links/phones checked against the official list | `engine.py` | ✅ done |
-| Warnings in Romanian + English (max 3 sentences, only official contacts, never repeats links or numbers from the message) | `warnings_ro.py` | ✅ first version |
-| Self-check against the answer key, using the jury's accuracy points | `evaluate.py` | ✅ done |
-| Web app: paste box, open file, one big button, coloured result with icon + words, read-aloud, "trusted person" call button, RO/EN toggle | `app.py`, `static/index.html` | ✅ first version |
-| Dashboard: load a whole folder, summary line, one row per scenario, click a row for the detail view (first-alert message highlighted), CSV export | `static/index.html` | ✅ first version |
-| Synthetic Romanian training data generator (with genuine "looks dangerous but safe" messages) | `gen_data.py` | ✅ done, needs more variety |
-| Fine-tuning script (Romanian BERT, 13 flags, per-flag threshold calibration) | `train.py`, `model.py` | ✅ tested, **not trained yet** (Andrei is setting up the GPU) |
+| Scoring engine: official formula, verdict bands, first alert, re-score after every message (`engine.py`) | B | ✅ done |
+| Rules for all 13 red flags + link/phone checks against `data/official_catalog.json` (`engine.py`) | B | ✅ done, **not yet tested on new messages** |
+| Fine-tuned Romanian BERT, 13 flags (`train.py`, `model.py`) | Andrei | ✅ trained, lives in `model_out/` **on Andrei's laptop only** (not in git) |
+| Per-flag thresholds (`model_out/thresholds.json`) | Andrei | ✅ set to 0.6 (dev scores were all 1.0, so they couldn't pick a threshold) |
+| Threshold-selection fix in `train.py` | Andrei | ✅ pushed |
+| Synthetic training data generator (`gen_data.py`) | Andrei | ✅ works; ⚠️ **delete line 70** (`"Codul de acces pentru contul de ",`, an unfinished sentence with a wrong label) before the next training run |
+| Warnings RO/EN (`warnings_ro.py`) | C | ✅ refined by David; wording kept as written |
+| Web app redesign (`static/index.html`) | C | ✅ redesigned by David (dashboard, folder load, detail view, read-aloud, call button, CSV export) |
+| Validation Set | all | ✅ **63/63** with rules only and with rules + model |
+| Approach tier | Andrei | ✅ qualifies for **tier 6** (model + rules + link/number checks + calibration), **only if the app runs with the model** |
 
-**Current result:** rules only → **63/63 on the Validation Set (30/30)**.
-
-⚠️ **Be honest about that number.** The rules were tuned on those same 11 scenarios, so the secret Test Set will be harder. **Our own new test scenarios are the real test** (see Person B).
-
----
-
-## 2. How the app works
-
-It's a **local web app**: a small Python server runs on the laptop and does all the detection; the browser is just the screen.
-
-```
-Browser page (static/index.html)
-      │  sends the message to localhost:8000 (never leaves the laptop)
-      ▼
-Python server (app.py)
-      ├─ rules + link/phone checks vs official list   (engine.py)
-      ├─ fine-tuned Romanian BERT, calibrated thresholds (model.py) ← once trained
-      ├─ official score → verdict → scam type → first alert
-      └─ warning text                                  (warnings_ro.py)
-```
-
-A phone on the same Wi-Fi can open it at `http://<laptop-IP>:8000` (find the IP with `ipconfig`).
+⚠️ **The 63/63 is flattering.** The rules were tuned on those 11 scenarios, and `gen_data.py` contains near-copies of them. Person B's new tests are the only honest measurement.
 
 ---
 
-## 3. Setup (everyone)
+## 2. Remaining work
 
-On Windows, use `python`, not `python3`.
-
-```
-pip install fastapi uvicorn
-cd scamshield
-python evaluate.py data/validation_set data/validation_expected_results.csv --no-model
-```
-The last line must say `Accuracy points: 63/63`.
-
-Start the app (rules only, no model needed):
-```
-python app.py --no-model
-```
-Open http://localhost:8000 → **Dashboard** → "Încarcă un dosar" → choose `data/validation_set`. You should see 11 rows.
+| By | Who | Task |
+|---|---|---|
+| 14:00 | Andrei | Add own sentences to `gen_data.py` (genuine "looks dangerous" messages first) |
+| 14:00 | Andrei | Second training run → `model_out2/`; keep it only if it beats `model_out/` on Person B's tests |
+| 14:30 | **B** | **15–20 new test scenarios + expected CSV (section 3)** |
+| 14:30 | C | Read-aloud: use only voices installed on the laptop (`v.localService`). Online "Google" voices in Chrome send the text to a server |
+| 15:00 | C | Innovation: **risk timeline** (score per message, line at 25, alert marker) and a **"message a trusted person" SMS button** |
+| 15:30 | B | Run tests, fix rules; Validation must stay 63/63 |
+| 15:30 | Andrei | **Freeze the model choice.** No training after this |
+| 16:00 | C | 3-minute pitch drafted; everyone speaks |
+| 16:30 | B | Rehearse the Test Set procedure on Andrei's laptop |
+| 17:00 | all | **Code freeze.** Commit, then only run the app |
 
 ---
 
-## 4. Who does what
+## 3. Task for Person B: write independent test scenarios
 
-**Ownership rule:** only one person edits each file, so nobody overwrites anyone else in git.
-- `engine.py` → **Person B**
-- `static/index.html`, `warnings_ro.py` → **Person C**
-- `gen_data.py`, `train.py`, `model.py` → **Andrei**
+> This section is written so an AI assistant can work on it directly.
 
-### Andrei (Person A): the model
-1. Install torch with GPU support (RTX 3050, 4 GB) and check `torch.cuda.is_available()` → `True`.
-2. Generate data:
-   ```
-   python gen_data.py --n 4000 --out data/train.jsonl --seed 1
-   python gen_data.py --n 800  --out data/dev.jsonl   --seed 2
-   ```
-3. Train: `python train.py --bs 8` → creates `model_out/` (not committed to git).
-4. Check: `python evaluate.py data/validation_set data/validation_expected_results.csv` must still be 63/63. The `flags +[...]` column shows extra flags the model added. If one breaks a row, raise that flag's threshold in `model_out/thresholds.json`.
-5. While it trains: add more varied snippets to `gen_data.py`, especially **genuine messages that look dangerous**.
+### Goal
+Create **15–20 new test scenarios** that check how our detector does on messages it has never seen, plus an answer key. They mimic the secret Test Set (17 scenarios, 9 of them threads, including threads that build trust before the hook and genuine messages that look dangerous).
 
-### Person B: rules and testing
-Goal: find the cases where we're wrong before the jury does.
-1. Create `data/my_tests/` with **10–15 new scenarios** in the official JSON format (copy a validation file and change it), plus `data/my_tests_expected.csv` with the same columns as the validation CSV. Cover:
-   - genuine messages that look dangerous (real bank warning, real courier notice on the official site, a known relative asking for a lift)
-   - messages without diacritics, all lowercase, with typos
-   - **long threads (8–10 messages) where the hook comes late**
-   - types not in the validation set: INVESTMENT, JOB_OFFER, ROMANCE, plus a police or "your account was hacked" call
-2. Run `python evaluate.py data/my_tests data/my_tests_expected.csv --no-model`, look at the `XX` rows and fix the patterns in `engine.py`.
-3. **After every change:** re-run the Validation Set, which must stay at 63/63.
-4. Try to break it: empty message, emoji only, a huge paste, a broken JSON file. It must never crash.
+### Hard rules
+1. 🚫 **Never paste any Test Set message into an AI assistant** (ChatGPT, Claude, Copilot...). That disqualifies the team. This task only uses messages **we invent**.
+2. **Write new phrasings.** Don't copy or adapt the messages in `data/validation_set/` or the sentences in `gen_data.py`. A test that repeats training phrases proves nothing.
+3. **Decide the expected answers from the rules below, by hand.** Never run the app and copy its output into the answer key.
+4. **These files must never be used for training** (never added to `gen_data.py`).
+5. All organisations, links and numbers are fictional (see the official list below). Messages in Romanian.
 
-### Person C: GUI, warnings, pitch
-This covers ease of use (20 points), warning quality (25) and pitch (15).
-1. Open the app on a phone and make sure everything is readable. Text must stay ≥ 18 px, and colour must never be the only signal (there's always an icon + a word).
-2. Go through the brief's must-haves **M1–M9** and polish anything rough.
-3. **Read the warnings out loud to someone non-technical** (call a parent). Simplify anything they don't understand instantly. Rules: max 3 sentences, no jargon, one action through an official channel, never a link or number from the message.
-4. Nice addition: in the detail view, show which flags came from the **model** and which from the **rules**. It helps the jury see the model actually contributes.
-5. From about 14:00: write the **3-minute pitch**: problem → live demo → how it works → honest limits. **All three of us speak.**
+### What to cover
+
+| How many | Kind | Example idea |
+|---|---|---|
+| 5–6 | **Genuine but dangerous-looking** (expected SAFE) | real bank payment notification; courier "pay cash on delivery", tracking on curierexpres.ro; relative from a *known* contact asking for a lift; ANAF deadline reminder pointing to anaf.ro; bank SMS warning "never share your PIN" |
+| 4–5 | **Long threads, 6–10 messages, late hook** | friendly chat, then a money/code/data request at message 6–8 |
+| 4–5 | **Scam types not in the validation set** | INVESTMENT (crypto, guaranteed profit), JOB_OFFER (paid likes, then a deposit), ROMANCE, police call asking for bail money, "your account was hacked, give me the code" |
+| 2–3 | **Messy input** | no diacritics, all lowercase, typos, emoji, a link written as "bancadunarea punct com" |
+
+### File format: one JSON file per scenario, in `data/my_tests/T01.json`, `T02.json`, ...
+```json
+{
+  "id": "T01",
+  "channel": "whatsapp",
+  "sender": { "name": null, "address": "+40 7xx xxx 123", "known_contact": false },
+  "messages": [
+    { "n": 1, "from": "sender", "text": "..." },
+    { "n": 2, "from": "reader", "text": "..." }
+  ]
+}
+```
+- `channel`: `sms`, `whatsapp`, `email`, `chat` or `call_transcript`
+- `from`: `sender` (the possible scammer) or `reader` (the person we protect)
+- `known_contact`: `true` if the sender is saved in the reader's contacts
+- `n`: numbered from 1, **counting the reader's replies too**
+- A single message is a thread of length 1.
+
+### Answer key: `data/my_tests_expected.csv`
+Same columns as `data/validation_expected_results.csv`:
+```
+id,verdict,scam_type,risk_score,first_alert,red_flags
+T01,SCAM,FAMILY_EMERGENCY,80,5,RF_NEW_NUMBER;RF_PAYMENT_REQUEST;RF_URGENCY;RF_SECRECY
+T02,SAFE,NONE,0,,
+```
+`first_alert` and `red_flags` are empty for SAFE.
+
+### Official rules for computing the expected answers
+
+**Red flags and points** (count each flag once per scenario):
+
+| Code | Meaning | Points |
+|---|---|---|
+| RF_CODE_REQUEST | asks for an SMS / OTP / app code | 35 |
+| RF_REMOTE_ACCESS | asks to install remote-control software (AnyDesk...) | 35 |
+| RF_DATA_REQUEST | asks for card data, PIN, password, CNP, ID photo or bank login | 30 |
+| RF_PAYMENT_REQUEST | asks for a transfer, fee, deposit or cash pick-up | 25 |
+| RF_SUSPICIOUS_CONTACT | link, sender address or phone number **not** on the official list | 25 |
+| RF_NEW_NUMBER | unknown number claims to be family or a friend | 20 |
+| RF_SECRECY | asks to keep it secret / not to check with others | 20 |
+| RF_TOO_GOOD | prize, refund, guaranteed profit, easy money | 20 |
+| RF_IMPERSONATION | claims to be a bank, company, authority, police or support | 15 |
+| RF_URGENCY | short deadline or pressure to act now | 15 |
+| RF_THREAT | account blocked, fine, prison, virus | 15 |
+| RF_EMOTIONAL_PRESSURE | fear, love, pity or panic used as a lever | 10 |
+| RF_CHANNEL_SWITCH | moves the conversation to another app | 10 |
+
+**Risk score** = sum of points, **capped at 100**.
+**Verdict:** 0–24 SAFE · 25–49 SUSPICIOUS · 50–100 SCAM.
+**First alert** (threads): the number of the first message after which the score reaches **25 or more**. Empty for SAFE.
+**Scam type** (one): BANK_IMPERSONATION, COURIER_FEE, AUTHORITY_IMPERSONATION, FAMILY_EMERGENCY, TECH_SUPPORT, MARKETPLACE, ACCOUNT_TAKEOVER, INVESTMENT, ROMANCE, JOB_OFFER, PRIZE_LOTTERY, OTHER; **NONE** for SAFE.
+
+**How the answer key treats edge cases** (learned from the validation set):
+- A real company named **with** its official link or sender and no request → no flags (SAFE).
+- A real company named **with** a fake link, an unknown sender or a request → RF_IMPERSONATION.
+- "Do not share this code with anyone" (protective advice) is **not** RF_CODE_REQUEST.
+- A known contact asking for a code is still a scam (hacked account): RF_CODE_REQUEST, type ACCOUNT_TAKEOVER.
+
+**Official contacts** (fictional; anything else is unofficial):
+
+| Organisation | Website | Phone |
+|---|---|---|
+| Banca Dunărea | bancadunarea.ro | 0800 100 200 |
+| CurierExpres | curierexpres.ro | 0800 300 400 |
+| PiațaMea | piatamea.ro | — |
+| MegaShop | megashop.ro | 0800 500 600 |
+| ANAF | anaf.ro | 031 403 91 60 |
+
+### Then run and report
+```
+python evaluate.py data/my_tests data/my_tests_expected.csv --no-model
+python evaluate.py data/my_tests data/my_tests_expected.csv
+```
+- `XX` rows are failures.
+- If a **rule pattern** in `engine.py` is the cause → fix it, then re-run the Validation Set (must stay **63/63**).
+- If the failure appears **only with the model** (second command, not the first) → tell Andrei; he raises that flag's threshold in `model_out/thresholds.json`.
+- If the answer key itself looks debatable, say so instead of bending the code to it.
+
+### Crash tests (in the app)
+Empty paste, emoji only, a 5,000-word paste, a JSON file with a missing field, a `.txt` file: nothing may crash.
 
 ---
 
-## 5. Approach tier (bonus up to +10%)
+## 4. Test Set procedure (10 minutes before our slot, on Andrei's laptop)
 
-We're aiming for **tier 6**: model + rules + link/number checks + calibration. We only qualify **once the trained model is running in the app**. Rules alone are not in the tier table.
+1. App running **with the model**: `python app.py` prints "Model loaded".
+2. Copy the Test Set folder onto the laptop → Dashboard → load the folder.
+3. Check: 17 rows, the summary line is correct, a row opens the detail view.
+4. Backup: `python evaluate.py <test_folder> --out test_results.csv`.
+5. Live re-run: the jury picks a file → open it alone → it must match its dashboard row.
 
-At the presentation:
-- Start with `python app.py` (**with** the model). It prints "Model loaded".
-- Have `model_out/dev_report.txt` ready (per-flag calibration).
-- Answer to the architect's question: *"Rules and link/number checks against the official list, combined with a Romanian BERT we fine-tuned for the 13 flags, with a calibrated threshold per flag. Everything runs on this laptop; no message leaves it."*
-
-🚫 **Never paste a Test Set message into ChatGPT, Claude or any cloud AI.** That means disqualification.
-
----
-
-## 6. Test Set procedure (10 minutes before our slot)
-
-1. Copy the Test Set folder onto the laptop.
-2. App already running **with the model** → Dashboard → "Încarcă un dosar" → select the folder.
-3. Check: 17 rows, the summary line is correct, and clicking a row opens the detail view.
-4. Backup: `python evaluate.py <test_folder> --out test_results.csv` (gives the same results).
-5. Live re-run: the jury picks one file → open it in **Verifică** → the result must match the dashboard row.
+🚫 The Test Set never goes into any AI assistant.
 
 ---
 
-## 7. Timeline
+## 5. Answer to the jury's tier question
 
-| By | Milestone |
-|---|---|
-| 12:30 | Model trained; Person B has the first 10 test scenarios |
-| 13:30 | Model + rules together still 63/63 on validation; lunch |
-| 15:30 | GUI and dashboard final; warnings checked with a real person |
-| 16:30 | Pitch rehearsed once; full test run with a fresh folder |
-| 17:00 | **Code freeze.** Commit, then only run the app |
+*"Rules and link/number checks against the official list, combined with a Romanian BERT we fine-tuned for the 13 red flags, with a calibrated threshold per flag. Everything runs on this laptop; no message leaves it."*
+
+Have `model_out/dev_report.txt` ready to show.
