@@ -101,8 +101,18 @@
 
 <script>
 const ICON = {SAFE:"✅", SUSPICIOUS:"⚠️", SCAM:"⛔"};
-const LABEL = {ro:{SAFE:"Pare în regulă", SUSPICIOUS:"Atenție, verificați înainte să răspundeți", SCAM:"Pare o țeapă! Nu răspundeți"},
-               en:{SAFE:"Looks fine", SUSPICIOUS:"Careful, check before replying", SCAM:"Looks like a scam! Do not reply"}};
+const LABEL = {
+  ro: {
+    SAFE: "Pare în regulă",
+    SUSPICIOUS: "Atenție, verificați înainte să răspundeți",
+    SCAM: "Atenție, acest mesaj poate fi o înșelătorie!"
+  },
+  en: {
+    SAFE: "Looks fine",
+    SUSPICIOUS: "Careful, check before replying",
+    SCAM: "Warning, this message may be a scam!"
+  }
+};
 const FLAG_RO = {RF_CODE_REQUEST:"cere un cod", RF_REMOTE_ACCESS:"vrea control la distanță", RF_DATA_REQUEST:"cere date personale/card",
   RF_PAYMENT_REQUEST:"cere bani", RF_SUSPICIOUS_CONTACT:"adresă/număr fals", RF_NEW_NUMBER:"număr nou", RF_SECRECY:"cere secret",
   RF_TOO_GOOD:"prea frumos ca să fie adevărat", RF_IMPERSONATION:"se dă drept altcineva", RF_URGENCY:"vă grăbește",

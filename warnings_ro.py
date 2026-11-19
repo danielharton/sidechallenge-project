@@ -8,8 +8,14 @@ import re
 from engine import norm  # noqa: circular-safe (only used at call time)
 
 HEAD = {
-    "SCAM": ("Atenție, pare o țeapă!", "Warning, this looks like a scam!"),
-    "SUSPICIOUS": ("Atenție, verificați înainte să răspundeți!", "Careful, check before you reply!"),
+    "SCAM": (
+        "Atenție, acest mesaj poate fi o înșelătorie!",
+        "Warning, this message may be a scam!"
+    ),
+    "SUSPICIOUS": (
+        "Atenție, verificați înainte să răspundeți!",
+        "Careful, check before you reply!"
+    ),
 }
 
 # why-phrases, in priority order (RO, EN)
@@ -130,9 +136,9 @@ def make_warning(result, scenario):
     text_n = norm(sender_text)
 
     if verdict == "SAFE":
-        return ("Pare în regulă. Mesajul nu vă cere bani, coduri sau date personale. "
-                "Dacă aveți totuși dubii, sunați la numărul oficial al instituției, nu la cel din mesaj.",
-                "Looks fine. The message does not ask for money, codes or personal data. "
+        return ("Mesajul nu vă cere bani, coduri sau date personale. "
+                "Dacă aveți totuși dubii, sunați la numărul oficial al  instituției, nu la cel din mesaj.",
+                "The message does not ask for money, codes or personal data. "
                 "If in doubt, call the official number, not one from the message.")
 
     t = result["scam_type"]
@@ -159,5 +165,4 @@ def make_warning(result, scenario):
         s2_ro, s2_en = what_ro + ".", what_en + "."
 
     act_ro, act_en = _action(t, text_n, scenario)
-    head_ro, head_en = HEAD[verdict]
-    return f"{head_ro} {s2_ro} {act_ro}", f"{head_en} {s2_en} {act_en}"
+    return f"{s2_ro} {act_ro}", f"{s2_en} {act_en}"
