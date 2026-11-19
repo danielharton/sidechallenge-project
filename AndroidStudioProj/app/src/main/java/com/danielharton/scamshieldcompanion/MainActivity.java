@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String DEMO_TEXT =
             "Bună ziua! Contul dumneavoastră bancar va fi blocat în 30 de minute. "
                     + "Pentru deblocare, trimiteți-mi codul primit prin SMS și completați datele cardului pe bancadunarea-securitate.com";
+    private static final String DEMO_SENDER = "Banca Dunărea";
 
     private TextView statusListener, statusOverlay, statusVpn, statusPost, textResult;
     private Button btnListener, btnOverlay, btnVpn, btnPost;
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     /** Demo: runs a synthetic scam through the real backend and the real alert path. */
     private void simulate() {
         textResult.setText("Se analizează mesajul de test…");
-        IncomingMessage demo = new IncomingMessage("com.whatsapp", "+40 712 345 678", "+40 712 345 678", DEMO_TEXT, false);
+        IncomingMessage demo = new IncomingMessage("com.whatsapp", DEMO_SENDER, "+40 712 345 678", DEMO_TEXT, false);
         ScamShieldApiClient.analyze(this, demo.text, demo.knownContact, new ScamShieldApiClient.Callback() {
             @Override
             public void onResult(AnalysisResult r) {

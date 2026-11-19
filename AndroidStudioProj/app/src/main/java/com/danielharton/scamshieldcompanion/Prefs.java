@@ -8,8 +8,9 @@ public final class Prefs {
     private static final String FILE = "scam_shield_prefs";
     private static final String KEY_BACKEND = "backend_url";
     private static final String KEY_MONITORING = "monitoring";
+    private static final String LEGACY_BACKEND = "http://10.0.2.2:8000";
     /** Android emulator -> host laptop. A real phone needs the laptop's LAN IP. */
-    public static final String DEFAULT_BACKEND = "http://10.0.2.2:8000";
+    public static final String DEFAULT_BACKEND = "http://10.0.2.2:8002";
 
     private Prefs() {}
 
@@ -18,7 +19,8 @@ public final class Prefs {
     }
 
     public static String backendUrl(Context c) {
-        return sp(c).getString(KEY_BACKEND, DEFAULT_BACKEND);
+        String configured = sp(c).getString(KEY_BACKEND, null);
+        return configured == null || LEGACY_BACKEND.equals(configured) ? DEFAULT_BACKEND : configured;
     }
 
     public static void setBackendUrl(Context c, String url) {

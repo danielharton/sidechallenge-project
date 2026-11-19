@@ -143,9 +143,10 @@ public class ScamNotificationListener extends NotificationListenerService {
             }
         }
 
-        if (text == null) {
-            CharSequence big = extras.getCharSequence(Notification.EXTRA_BIG_TEXT);
-            text = str(big != null ? big : extras.getCharSequence(Notification.EXTRA_TEXT));
+        CharSequence big = extras.getCharSequence(Notification.EXTRA_BIG_TEXT);
+        String fallbackText = str(big != null ? big : extras.getCharSequence(Notification.EXTRA_TEXT));
+        if (text == null || text.trim().startsWith("Eu: ")) {
+            text = fallbackText;
         }
         if (sender == null) sender = title;
         if (text == null || text.trim().isEmpty() || NOT_A_MESSAGE.matcher(text.trim()).matches()) return null;
