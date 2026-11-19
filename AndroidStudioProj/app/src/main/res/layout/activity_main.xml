@@ -1,19 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <!-- focusable parent: the server address field no longer grabs focus and opens the keyboard on start -->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🛡️ Scam Shield"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/privacy_text"
+            android:textSize="17sp" />
+
+        <!-- Permission rows: label + status + button -->
+        <TextView style="@style/PermLabel" android:text="@string/perm_notifications_access" />
+        <LinearLayout style="@style/PermRow">
+            <TextView android:id="@+id/status_listener" style="@style/PermStatus" />
+            <Button android:id="@+id/btn_listener" style="@style/PermButton" />
+        </LinearLayout>
+
+        <TextView style="@style/PermLabel" android:text="@string/perm_overlay" />
+        <LinearLayout style="@style/PermRow">
+            <TextView android:id="@+id/status_overlay" style="@style/PermStatus" />
+            <Button android:id="@+id/btn_overlay" style="@style/PermButton" />
+        </LinearLayout>
+
+        <TextView style="@style/PermLabel" android:text="@string/perm_vpn" />
+        <LinearLayout style="@style/PermRow">
+            <TextView android:id="@+id/status_vpn" style="@style/PermStatus" />
+            <Button android:id="@+id/btn_vpn" style="@style/PermButton" />
+        </LinearLayout>
+
+        <TextView style="@style/PermLabel" android:text="@string/perm_post_notifications" />
+        <LinearLayout style="@style/PermRow">
+            <TextView android:id="@+id/status_post" style="@style/PermStatus" />
+            <Button android:id="@+id/btn_post" style="@style/PermButton" />
+        </LinearLayout>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switch_monitoring"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/monitoring"
+            android:textSize="19sp" />
+
+        <TextView style="@style/PermLabel" android:text="@string/backend_url" />
+        <EditText
+            android:id="@+id/edit_backend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/backend_hint"
+            android:inputType="textUri"
+            android:textSize="18sp" />
+
+        <LinearLayout style="@style/PermRow">
+            <Button android:id="@+id/btn_save" style="@style/PermButton" android:text="@string/save" />
+            <Button android:id="@+id/btn_test" style="@style/PermButton" android:layout_marginStart="8dp" android:text="@string/test_connection" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_simulate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minHeight="60dp"
+            android:text="@string/simulate"
+            android:textSize="19sp" />
+
+        <Button
+            android:id="@+id/btn_unblock"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/unblock_now"
+            android:textSize="17sp" />
+    </LinearLayout>
+</ScrollView>

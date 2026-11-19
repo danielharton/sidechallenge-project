@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- DEMO ONLY: the Scam Shield backend runs on a laptop over plain HTTP (http://10.0.2.2:8000 or http://<LAN IP>:8000).
+     Remove cleartext before any real release and serve the backend over HTTPS. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

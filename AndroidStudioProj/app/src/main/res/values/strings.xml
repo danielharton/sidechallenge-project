@@ -1,3 +1,40 @@
 <resources>
-    <string name="app_name">ScamShieldCompanion</string>
+    <string name="app_name">Scam Shield</string>
+    <string name="listener_label">Scam Shield – verificare mesaje WhatsApp</string>
+
+    <string name="privacy_text">Scam Shield citește doar notificările WhatsApp, trimite textul mesajului la serverul Scam Shield (laptopul echipei) pentru verificare și nu salvează nimic. Dacă mesajul pare o țeapă, oprește temporar internetul pentru WhatsApp și vă arată un avertisment.</string>
+
+    <string name="perm_notifications_access">1. Acces la notificări</string>
+    <string name="perm_overlay">2. Afișare peste alte aplicații</string>
+    <string name="perm_vpn">3. Blocare internet WhatsApp (VPN)</string>
+    <string name="perm_post_notifications">4. Notificări Scam Shield</string>
+    <string name="grant">Permite</string>
+    <string name="granted">✓ Permis</string>
+    <string name="not_granted">✗ Nepermis</string>
+
+    <string name="monitoring">Verificare automată activă</string>
+    <string name="backend_url">Adresa serverului Scam Shield</string>
+    <string name="backend_hint">http://10.0.2.2:8000 (emulator) sau http://192.168.x.x:8000 (telefon)</string>
+    <string name="save">Salvează</string>
+    <string name="test_connection">Testează conexiunea</string>
+    <string name="simulate">Simulează o țeapă</string>
+    <string name="unblock_now">Repornește internetul WhatsApp</string>
+
+    <string name="overlay_title">Atenție! Pare o țeapă</string>
+    <string name="overlay_title_suspicious">Atenție, verificați înainte să răspundeți</string>
+    <string name="overlay_blocked">Am oprit temporar internetul pentru WhatsApp, ca să aveți timp să citiți în liniște.</string>
+    <string name="overlay_not_blocked">Internetul WhatsApp NU a putut fi oprit (WhatsApp nu este instalat sau lipsește permisiunea VPN).</string>
+    <string name="overlay_from">De la</string>
+    <string name="overlay_phone">Telefon</string>
+    <string name="overlay_message">Mesaj</string>
+    <string name="overlay_why">De ce</string>
+    <string name="overlay_wait">Citiți avertismentul… %1$d s</string>
+    <string name="overlay_continue">Am înțeles – repornește WhatsApp</string>
+
+    <string name="channel_warnings">Avertismente țepe</string>
+    <string name="channel_vpn">Blocare WhatsApp</string>
+    <string name="vpn_notification_title">WhatsApp este oprit temporar</string>
+    <string name="vpn_notification_text">Scam Shield a găsit un mesaj suspect. Atingeți pentru detalii.</string>
+    <string name="warning_notification_title">Scam Shield – posibilă țeapă!</string>
+    <string name="warning_notification_text">Un mesaj WhatsApp pare înșelătorie. Deschideți Scam Shield.</string>
 </resources>
