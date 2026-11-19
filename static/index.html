@@ -28,7 +28,9 @@
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    * { box-sizing: border-box }
+    * {
+      box-sizing: border-box
+    }
 
     body {
       margin: 0;
@@ -38,9 +40,19 @@
       line-height: 1.5
     }
 
-    button, input, textarea { font: inherit }
-    button { cursor: pointer }
-    .app { min-height: 100vh }
+    button,
+    input,
+    textarea {
+      font: inherit
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    .app {
+      min-height: 100vh
+    }
 
     .topbar {
       height: 72px;
@@ -86,7 +98,9 @@
       letter-spacing: .3px
     }
 
-    .top-spacer { flex: 1 }
+    .top-spacer {
+      flex: 1
+    }
 
     .privacy-top {
       color: #c3d0e4;
@@ -130,7 +144,10 @@
       margin: 2px 0 12px
     }
 
-    .nav-list { display: grid; gap: 6px }
+    .nav-list {
+      display: grid;
+      gap: 6px
+    }
 
     .nav-btn {
       border: 0;
@@ -220,7 +237,9 @@
       box-shadow: var(--shadow)
     }
 
-    .analyzer { padding: 24px }
+    .analyzer {
+      padding: 24px
+    }
 
     .field-head {
       display: flex;
@@ -256,13 +275,16 @@
       transition: border .15s, box-shadow .15s
     }
 
-    textarea:focus, input:focus {
+    textarea:focus,
+    input:focus {
       border-color: #7aa2f5;
       box-shadow: 0 0 0 3px rgba(53, 111, 224, .12);
       outline: none
     }
 
-    textarea::placeholder { color: #a4adbb }
+    textarea::placeholder {
+      color: #a4adbb
+    }
 
     .composer-bottom {
       display: flex;
@@ -300,7 +322,8 @@
       accent-color: var(--blue)
     }
 
-    .file-label, .secondary-btn {
+    .file-label,
+    .secondary-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -314,12 +337,15 @@
       font-weight: 680
     }
 
-    .file-label:hover, .secondary-btn:hover {
+    .file-label:hover,
+    .secondary-btn:hover {
       background: #f7f9fc;
       border-color: #b9c8df
     }
 
-    .hidden-input { display: none }
+    .hidden-input {
+      display: none
+    }
 
     .primary-btn {
       width: 100%;
@@ -401,7 +427,9 @@
       color: var(--blue)
     }
 
-    .screenshot-upload { cursor: pointer }
+    .screenshot-upload {
+      cursor: pointer
+    }
 
     .image-preview {
       margin-top: 14px;
@@ -432,8 +460,14 @@
       overflow-wrap: anywhere
     }
 
-    .ocr-btn { margin-top: 12px }
-    .ocr-btn:disabled { opacity: .5; cursor: not-allowed }
+    .ocr-btn {
+      margin-top: 12px
+    }
+
+    .ocr-btn:disabled {
+      opacity: .5;
+      cursor: not-allowed
+    }
 
     .ocr-status {
       margin-top: 12px;
@@ -456,7 +490,9 @@
       transition: width .2s
     }
 
-    #result { margin-top: 22px }
+    #result {
+      margin-top: 22px
+    }
 
     .result-card {
       border: 1px solid var(--line);
@@ -467,9 +503,17 @@
       box-shadow: var(--shadow)
     }
 
-    .result-card.SAFE { border-left-color: var(--safe) }
-    .result-card.SUSPICIOUS { border-left-color: #d18a19 }
-    .result-card.SCAM { border-left-color: var(--scam) }
+    .result-card.SAFE {
+      border-left-color: var(--safe)
+    }
+
+    .result-card.SUSPICIOUS {
+      border-left-color: #d18a19
+    }
+
+    .result-card.SCAM {
+      border-left-color: var(--scam)
+    }
 
     .result-top {
       display: flex;
@@ -495,9 +539,17 @@
       font-size: 20px
     }
 
-    .SAFE .verdict-icon { background: var(--safe-bg) }
-    .SUSPICIOUS .verdict-icon { background: var(--sus-bg) }
-    .SCAM .verdict-icon { background: var(--scam-bg) }
+    .SAFE .verdict-icon {
+      background: var(--safe-bg)
+    }
+
+    .SUSPICIOUS .verdict-icon {
+      background: var(--sus-bg)
+    }
+
+    .SCAM .verdict-icon {
+      background: var(--scam-bg)
+    }
 
     .verdict-title {
       font-size: 18px;
@@ -505,9 +557,17 @@
       letter-spacing: -.3px
     }
 
-    .SAFE .verdict-title { color: var(--safe) }
-    .SUSPICIOUS .verdict-title { color: var(--sus) }
-    .SCAM .verdict-title { color: var(--scam) }
+    .SAFE .verdict-title {
+      color: var(--safe)
+    }
+
+    .SUSPICIOUS .verdict-title {
+      color: var(--sus)
+    }
+
+    .SCAM .verdict-title {
+      color: var(--scam)
+    }
 
     .risk {
       flex: 0 0 auto;
@@ -571,7 +631,10 @@
       font-size: 13px
     }
 
-    .thread { display: grid; gap: 9px }
+    .thread {
+      display: grid;
+      gap: 9px
+    }
 
     .message {
       max-width: 88%;
@@ -586,7 +649,9 @@
       background: #edf3ff
     }
 
-    .message.alert { border: 2px solid var(--scam) }
+    .message.alert {
+      border: 2px solid var(--scam)
+    }
 
     .message-meta {
       color: #8792a3;
@@ -616,7 +681,10 @@
       gap: 10px
     }
 
-    .trusted-copy { flex: 1; min-width: 180px }
+    .trusted-copy {
+      flex: 1;
+      min-width: 180px
+    }
 
     .trusted-copy strong {
       display: block;
@@ -646,7 +714,9 @@
       margin-bottom: 22px
     }
 
-    .section-head .lead { margin-bottom: 0 }
+    .section-head .lead {
+      margin-bottom: 0
+    }
 
     .dashboard-tools {
       display: flex;
@@ -662,7 +732,9 @@
       margin-bottom: 18px
     }
 
-    .stat { padding: 16px }
+    .stat {
+      padding: 16px
+    }
 
     .stat-label {
       color: #8490a2;
@@ -676,11 +748,21 @@
       letter-spacing: -.7px
     }
 
-    .stat-value.scam { color: var(--scam) }
-    .stat-value.sus { color: var(--sus) }
-    .stat-value.safe { color: var(--safe) }
+    .stat-value.scam {
+      color: var(--scam)
+    }
 
-    .table-wrap { overflow: auto }
+    .stat-value.sus {
+      color: var(--sus)
+    }
+
+    .stat-value.safe {
+      color: var(--safe)
+    }
+
+    .table-wrap {
+      overflow: auto
+    }
 
     table {
       width: 100%;
@@ -698,14 +780,20 @@
       letter-spacing: .5px
     }
 
-    th, td {
+    th,
+    td {
       padding: 13px 14px;
       border-bottom: 1px solid #edf0f5;
       vertical-align: top
     }
 
-    tbody tr { cursor: pointer }
-    tbody tr:hover { background: #f8faff }
+    tbody tr {
+      cursor: pointer
+    }
+
+    tbody tr:hover {
+      background: #f8faff
+    }
 
     .pill {
       display: inline-flex;
@@ -716,9 +804,20 @@
       white-space: nowrap
     }
 
-    .pill.SAFE { color: var(--safe); background: var(--safe-bg) }
-    .pill.SUSPICIOUS { color: var(--sus); background: var(--sus-bg) }
-    .pill.SCAM { color: var(--scam); background: var(--scam-bg) }
+    .pill.SAFE {
+      color: var(--safe);
+      background: var(--safe-bg)
+    }
+
+    .pill.SUSPICIOUS {
+      color: var(--sus);
+      background: var(--sus-bg)
+    }
+
+    .pill.SCAM {
+      color: var(--scam);
+      background: var(--scam-bg)
+    }
 
     .empty-state {
       text-align: center;
@@ -727,7 +826,10 @@
       font-size: 12px
     }
 
-    .empty-icon { font-size: 27px; margin-bottom: 8px }
+    .empty-icon {
+      font-size: 27px;
+      margin-bottom: 8px
+    }
 
     .toast {
       position: fixed;
@@ -742,7 +844,9 @@
       z-index: 10
     }
 
-    .hidden { display: none !important }
+    .hidden {
+      display: none !important
+    }
 
     dialog {
       width: min(760px, 94vw);
@@ -778,24 +882,58 @@
     }
 
     @media(max-width:900px) {
-      .sidebar { width: 190px; flex-basis: 190px }
-      main { padding: 30px 22px 50px }
-      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+      .sidebar {
+        width: 190px;
+        flex-basis: 190px
+      }
+
+      main {
+        padding: 30px 22px 50px
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
     }
 
     @media(max-width:650px) {
-      .topbar { height: 62px; padding: 0 16px }
-      .brand { min-width: 0 }
-      .brand-sub, .privacy-top { display: none }
-      .layout { display: block; min-height: calc(100vh - 62px) }
+      .topbar {
+        height: 62px;
+        padding: 0 16px
+      }
+
+      .brand {
+        min-width: 0
+      }
+
+      .brand-sub,
+      .privacy-top {
+        display: none
+      }
+
+      .layout {
+        display: block;
+        min-height: calc(100vh - 62px)
+      }
+
       .sidebar {
         width: 100%;
         padding: 9px 12px;
         border-right: 0;
         border-bottom: 1px solid var(--line)
       }
-      .nav-label, .sidebar-note { display: none }
-      .nav-list { display: flex; gap: 5px; overflow-x: auto }
+
+      .nav-label,
+      .sidebar-note {
+        display: none
+      }
+
+      .nav-list {
+        display: flex;
+        gap: 5px;
+        overflow-x: auto
+      }
+
       .nav-btn {
         width: auto;
         flex: 1;
@@ -804,20 +942,63 @@
         padding: 9px 10px;
         font-size: 11px
       }
-      .nav-icon { display: none }
-      main { padding: 25px 14px 40px }
-      .analyzer { padding: 16px }
-      textarea { min-height: 180px }
-      .field-hint { display: none }
-      .stats { gap: 8px }
-      .stat { padding: 12px }
-      .stat-value { font-size: 21px }
-      .trusted { align-items: flex-start }
-      .trusted input { flex: 1; min-width: 120px }
-      .result-top { align-items: flex-start }
-      .verdict-title { font-size: 15px }
-      .risk strong { font-size: 19px }
-      .message { max-width: 96% }
+
+      .nav-icon {
+        display: none
+      }
+
+      main {
+        padding: 25px 14px 40px
+      }
+
+      .analyzer {
+        padding: 16px
+      }
+
+      textarea {
+        min-height: 180px
+      }
+
+      .field-hint {
+        display: none
+      }
+
+      .stats {
+        gap: 8px
+      }
+
+      .stat {
+        padding: 12px
+      }
+
+      .stat-value {
+        font-size: 21px
+      }
+
+      .trusted {
+        align-items: flex-start
+      }
+
+      .trusted input {
+        flex: 1;
+        min-width: 120px
+      }
+
+      .result-top {
+        align-items: flex-start
+      }
+
+      .verdict-title {
+        font-size: 15px
+      }
+
+      .risk strong {
+        font-size: 19px
+      }
+
+      .message {
+        max-width: 96%
+      }
     }
   </style>
 </head>
@@ -841,12 +1022,15 @@
       <aside class="sidebar">
         <div class="nav-label" data-i18n="workspace">SPAȚIU DE LUCRU</div>
         <nav class="nav-list" aria-label="Main navigation">
-          <button class="nav-btn active" data-tab="check"><span class="nav-icon">⌕</span><span data-i18n="navAnalyze">Analizează</span></button>
-          <button class="nav-btn" data-tab="dash"><span class="nav-icon">▦</span><span data-i18n="navDashboard">Dashboard</span></button>
+          <button class="nav-btn active" data-tab="check"><span class="nav-icon">⌕</span><span
+              data-i18n="navAnalyze">Analizează</span></button>
+          <button class="nav-btn" data-tab="dash"><span class="nav-icon">▦</span><span
+              data-i18n="navDashboard">Dashboard</span></button>
         </nav>
         <div class="sidebar-note">
           <strong data-i18n="privacyTitle">Confidențialitatea contează</strong>
-          <span data-i18n="privacyBody">Mesajele sunt trimise doar către serverul local al aplicației pentru analiză.</span>
+          <span data-i18n="privacyBody">Mesajele sunt trimise doar către serverul local al aplicației pentru
+            analiză.</span>
         </div>
       </aside>
 
@@ -854,7 +1038,8 @@
         <section id="checkPage" class="page">
           <p class="eyebrow" data-i18n="analyzerEyebrow">ANALIZĂ DE SIGURANȚĂ</p>
           <h1 data-i18n="analyzerTitle">Verifică un mesaj</h1>
-          <p class="lead" data-i18n="analyzerLead">Ai primit un mesaj suspect? Analizează-l înainte să răspunzi, să apeși pe un link sau să trimiți bani.</p>
+          <p class="lead" data-i18n="analyzerLead">Ai primit un mesaj suspect? Analizează-l înainte să răspunzi, să
+            apeși pe un link sau să trimiți bani.</p>
 
           <div class="panel analyzer">
             <div class="field-head">
@@ -862,7 +1047,8 @@
               <span class="field-hint" data-i18n="messageHint">Lipește textul exact, dacă poți</span>
             </div>
 
-            <textarea id="txt" maxlength="20000" placeholder="Ex.: Banca: Cardul dvs. a fost blocat. Accesați..." data-i18n-placeholder="messagePlaceholder"></textarea>
+            <textarea id="txt" maxlength="20000" placeholder="Ex.: Banca: Cardul dvs. a fost blocat. Accesați..."
+              data-i18n-placeholder="messagePlaceholder"></textarea>
 
             <div class="composer-bottom">
               <span class="counter" id="counter">0 / 20.000</span>
@@ -873,44 +1059,55 @@
             </div>
 
             <div class="composer-tools">
-              <label class="file-label" for="one"><span>↥</span><span data-i18n="uploadFile">Încarcă un fișier .TXT / .JSON</span></label>
+              <label class="file-label" for="one"><span>↥</span><span data-i18n="uploadFile">Încarcă un fișier .TXT /
+                  .JSON</span></label>
               <input class="hidden-input" type="file" id="one" accept=".json,.txt,text/plain,application/json">
-              <button class="secondary-btn" id="clearBtn" type="button"><span>×</span><span data-i18n="clear">Șterge textul</span></button>
+              <button class="secondary-btn" id="clearBtn" type="button"><span>×</span><span data-i18n="clear">Șterge
+                  textul</span></button>
             </div>
 
             <div class="screenshot-section">
               <div class="screenshot-heading">
                 <div>
                   <strong data-i18n="screenshotTitle">Verifică o captură de ecran</strong>
-                  <p data-i18n="screenshotDesc">Încarcă o captură din WhatsApp, SMS sau altă aplicație. Poți și să lipești o imagine cu Ctrl+V.</p>
+                  <p data-i18n="screenshotDesc">Încarcă o captură din WhatsApp, SMS sau altă aplicație. Poți și să
+                    lipești o imagine cu Ctrl+V.</p>
                 </div>
                 <span class="screenshot-icon" aria-hidden="true">▧</span>
               </div>
 
-              <label class="file-label screenshot-upload" for="imageFile">↥ <span data-i18n="chooseImage">Alege o imagine</span></label>
+              <label class="file-label screenshot-upload" for="imageFile">↥ <span data-i18n="chooseImage">Alege o
+                  imagine</span></label>
               <input class="hidden-input" type="file" id="imageFile" accept="image/png,image/jpeg,image/webp">
 
               <div id="imagePreview" class="image-preview hidden">
                 <img id="previewImg" alt="Screenshot preview">
                 <div class="image-details">
                   <span id="imageName"></span>
-                  <button class="secondary-btn" id="removeImage" type="button" data-i18n="removeImage">Elimină imaginea</button>
+                  <button class="secondary-btn" id="removeImage" type="button" data-i18n="removeImage">Elimină
+                    imaginea</button>
                 </div>
               </div>
 
-              <button class="secondary-btn ocr-btn" id="ocrBtn" type="button" disabled><span>⌕</span><span data-i18n="extractText">Extrage textul din imagine</span></button>
+              <button class="secondary-btn ocr-btn" id="ocrBtn" type="button" disabled><span>⌕</span><span
+                  data-i18n="extractText">Extrage textul din imagine</span></button>
 
               <div id="ocrStatus" class="ocr-status hidden" role="status" aria-live="polite">
                 <div id="ocrStatusText"></div>
-                <div class="ocr-progress"><div id="ocrProgressBar"></div></div>
+                <div class="ocr-progress">
+                  <div id="ocrProgressBar"></div>
+                </div>
               </div>
             </div>
 
-            <button class="primary-btn" id="analyzeBtn" type="button"><span>⌕</span> <span data-i18n="analyzeButton">Analizează mesajul</span></button>
-            <p class="helper" data-i18n="conversationHint">Pentru o conversație, pune câte un mesaj pe rând. Începe răspunsurile tale cu „&gt;”.</p>
+            <button class="primary-btn" id="analyzeBtn" type="button"><span>⌕</span> <span
+                data-i18n="analyzeButton">Analizează mesajul</span></button>
+            <p class="helper" data-i18n="conversationHint">Pentru o conversație, pune câte un mesaj pe rând. Începe
+              răspunsurile tale cu „&gt;”.</p>
             <div class="privacy-note">
               <span class="privacy-dot"></span>
-              <span data-i18n="privacyNote">Mesajul este analizat de aplicația locală. Nu îl trimitem către servicii AI externe.</span>
+              <span data-i18n="privacyNote">Mesajul este analizat de aplicația locală. Nu îl trimitem către servicii AI
+                externe.</span>
             </div>
           </div>
 
@@ -921,7 +1118,8 @@
               <strong data-i18n="trustedTitle">Persoană de încredere</strong>
               <span data-i18n="trustedDesc">Păstrează la îndemână un contact pe care îl poți suna dacă ai dubii.</span>
             </div>
-            <input id="trustedNr" type="tel" autocomplete="tel" placeholder="07xx xxx xxx" aria-label="Trusted contact phone number">
+            <input id="trustedNr" type="tel" autocomplete="tel" placeholder="07xx xxx xxx"
+              aria-label="Trusted contact phone number">
             <button class="secondary-btn" id="saveTrusted" type="button" data-i18n="save">Salvează</button>
           </div>
         </section>
@@ -931,7 +1129,8 @@
             <div>
               <p class="eyebrow" data-i18n="dashboardEyebrow">TESTARE ȘI EVALUARE</p>
               <h1 data-i18n="dashboardTitle">Dashboard</h1>
-              <p class="lead" data-i18n="dashboardLead">Încarcă scenarii de test pentru a vedea cum se comportă detectorul.</p>
+              <p class="lead" data-i18n="dashboardLead">Încarcă scenarii de test pentru a vedea cum se comportă
+                detectorul.</p>
             </div>
           </div>
 
@@ -942,7 +1141,8 @@
             <label class="file-label" for="files">↥ <span data-i18n="uploadJson">Încarcă fișiere JSON</span></label>
             <input class="hidden-input" type="file" id="files" multiple accept=".json,application/json">
 
-            <button class="secondary-btn" id="exportBtn" type="button">↓ <span data-i18n="exportCsv">Exportă CSV</span></button>
+            <button class="secondary-btn" id="exportBtn" type="button">↓ <span data-i18n="exportCsv">Exportă
+                CSV</span></button>
           </div>
 
           <div class="stats">
@@ -1105,6 +1305,7 @@
         readAloud: "Citește cu voce tare",
         callTrusted: "Sună persoana de încredere",
         conversation: "Conversația",
+        singleMessage: "Mesajul",
         pasteFirst: "Lipește mai întâi un mesaj.",
         requestFailed: "Nu am putut contacta serverul local.",
         invalidFile: "Fișier invalid sau format necunoscut.",
@@ -1179,6 +1380,7 @@
         readAloud: "Read aloud",
         callTrusted: "Call trusted person",
         conversation: "Conversation",
+        singleMessage: "Message",
         pasteFirst: "Paste a message first.",
         requestFailed: "Could not reach the local server.",
         invalidFile: "Invalid file or unknown format.",
@@ -1358,9 +1560,12 @@
           ${r.first_alert ? `<span>${esc(t("first"))}: <strong>${esc(r.first_alert)}</strong></span>` : ""}
         </div>
         ${flags.length ? `<div class="flags">${flags.map(flag =>
-          `<span class="flag" title="${esc((FLAG[flag] || ["", ""])[lang === "ro" ? 0 : 1])}">${esc(flag)}</span>`
-        ).join("")}</div>` : ""}
-        ${messages.length > 1 ? `<h3 class="thread-title">${esc(t("conversation"))}</h3>${threadHtml(r)}` : ""}
+        `<span class="flag" title="${esc((FLAG[flag] || ["", ""])[lang === "ro" ? 0 : 1])}">${esc(flag)}</span>`
+      ).join("")}</div>` : ""}
+        ${messages.length > 0 ? `
+          <h3 class="thread-title">${esc(t(messages.length === 1 ? "singleMessage" : "conversation"))}</h3>
+          ${threadHtml(r)}
+        ` : ""}
       </div>`;
     }
 
@@ -1374,8 +1579,8 @@
           <div class="message-meta">#${esc(m.n)}${isReader ? (lang === "ro" ? " · TU" : " · YOU") : ""}${isAlert ? ` · <strong>${esc(t("firstMarker"))}</strong>` : ""}</div>
           <div class="message-text">${esc(m.text)}</div>
           ${newFlags.length ? `<div class="message-flags">+ ${newFlags.map(f =>
-            `${esc(f)} (${esc((FLAG[f] || ["", ""])[lang === "ro" ? 0 : 1])})`
-          ).join(", ")} → ${esc(m.score_after ?? "")}</div>` : ""}
+          `${esc(f)} (${esc((FLAG[f] || ["", ""])[lang === "ro" ? 0 : 1])})`
+        ).join(", ")} → ${esc(m.score_after ?? "")}</div>` : ""}
         </div>`;
       }).join("")}</div>`;
     }
@@ -1756,4 +1961,5 @@
     applyLanguage();
   </script>
 </body>
+
 </html>
